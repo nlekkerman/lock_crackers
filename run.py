@@ -46,6 +46,7 @@ WORKSHEET_NAME = 'info'
 worksheet = SHEET.worksheet(WORKSHEET_NAME)
 
 # Displaying rules
+print("??? LOCK CRACKERS ???")
 print("Welcome to the Password Guessing Game!")
 print("Rules:")
 print("- You need to guess a password which consists of 6 numbers.")
@@ -164,7 +165,7 @@ worksheet.append_row(player_info)
 
 # Printing the leaderboard based on the best times of players
 print("Leaderboard (Sorted by Best Time):")
-print("Name\tCountry\tDifficulty Level\tStatus\tTime")
+print("Name\tCount\tLevel\tStatus\tTime")
 leaderboard_data = worksheet.get_all_values()[1:]
 leaderboard_data.sort(key=lambda x: float(x[-1]))
 for row in leaderboard_data:
