@@ -57,7 +57,7 @@ print()
 
 # Get player's name
 while True:
-    player_name = input("What's your name? ")
+    player_name = input("What's your name?\n")
     if validate_name_country(player_name):
         break
     else:
@@ -65,7 +65,7 @@ while True:
 
 # Get player's country
 while True:
-    player_country = input("Where are you from? ")
+    player_country = input("Where are you from?\n")
     if validate_name_country(player_country):
         break
     else:
