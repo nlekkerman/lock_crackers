@@ -151,3 +151,21 @@ while True:
     else:
         print("Incorrect guess. Try again.")
         game_outcome = 'Lost'
+
+# Stop stopwatch
+if game_outcome == 'Won':
+    end_time = time.time()
+    elapsed_time = round(end_time - start_time, 1)
+    print(f"Elapsed time: {int(elapsed_time)} seconds")
+
+# Saving player's information and game outcome to Google Sheets
+player_info = [player_name, player_country, mode, game_outcome, elapsed_time]
+worksheet.append_row(player_info)
+
+# Printing the leaderboard based on the best times of players
+print("Leaderboard (Sorted by Best Time):")
+print("Name\tCountry\tDifficulty Level\tStatus\tTime")
+leaderboard_data = worksheet.get_all_values()[1:]
+leaderboard_data.sort(key=lambda x: float(x[-1]))
+for row in leaderboard_data:
+    print("\t".join(row))
