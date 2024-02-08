@@ -12,6 +12,21 @@ def validate_name_country(input_string):
 def validate_game_mode(mode):
     return mode in ['C', 'E', 'H']
 
+# Function to validate password input based on difficulty level
+def validate_password(input_string, mode):
+    if mode == 'C':
+        return all(char.isdigit() and int(char) <= 3 for char in input_string.strip().split())
+    elif mode == 'E':
+        return all(char.isdigit() and int(char) <= 5 for char in input_string.strip().split())
+    elif mode == 'H':
+        return all(char.isdigit() and int(char) <= 9 for char in input_string.strip().split())
+    else:
+        return False
+
+# Function to validate confirmation input
+def validate_confirmation_input(input_string):
+    return input_string.lower() in ['y', 'n']
+
 # Google Sheets credentials and API setup
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -77,3 +92,62 @@ elif mode == 'E':
 elif mode == 'H':
     password = [random.randint(0, 9) for _ in range(6)]
     difficulty_range = '0-9'
+    
+hidden_password = ['?' for _ in range(6)]
+
+# Main game loop
+while True:
+    # Display hidden password
+    print(" ".join(str(x) for x in hidden_password))
+
+    # Get user's guess
+    guess = input(f"Enter your guess (6 numbers separated by spaces, or press 'q' to quit): ").strip()
+
+    # Check if user wants to quit
+    if guess.lower() == 'q':
+        while True:
+            confirm_quit = input("Are you sure you want to quit? (Y/N): ").strip().lower()
+            if validate_confirmation_input(confirm_quit):
+                if confirm_quit == 'y':
+                    end_time = time.time()
+                    elapsed_time = round(end_time - start_time, 1)
+                    print(f"Elapsed time: {int(elapsed_time)} seconds")
+                    print("The password was:", " ".join(str(x) for x in password))
+                    break
+                elif confirm_quit == 'n':
+                    break
+            else:
+                print("Invalid input. Please enter 'Y' or 'N'.")
+        if confirm_quit == 'y':
+            break
+        else:
+            continue
+
+    # Check if the guess has 6 numbers
+    guess_list = guess.split()
+    if len(guess_list) != 6:
+        print("Please enter 6 numbers or 'q' to quit.")
+        continue
+
+    # Validate the password input based on difficulty level
+    if not validate_password(guess, mode):
+        print(f"Please enter valid numbers within the difficulty range {difficulty_range}.")
+        continue
+
+    # Convert the guess to integers
+    guess = [int(x) for x in guess_list]
+
+    # Check the guess against the password
+    correct_numbers = 0
+    for i in range(6):
+        if guess[i] == password[i]:
+            hidden_password[i] = str(password[i])
+            correct_numbers += 1
+
+    if correct_numbers == 6:
+        print("Congratulations! You guessed the password correctly!")
+        game_outcome = 'Won'
+        break
+    else:
+        print("Incorrect guess. Try again.")
+        game_outcome = 'Lost'
