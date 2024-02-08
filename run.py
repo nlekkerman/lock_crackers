@@ -57,7 +57,7 @@ print()
 
 # Get player's name
 while True:
-    player_name = input("What's your name?\n")
+    player_name = input("What's your name? ")
     if validate_name_country(player_name):
         break
     else:
@@ -65,7 +65,7 @@ while True:
 
 # Get player's country
 while True:
-    player_country = input("Where are you from?\n")
+    player_country = input("Where are you from? ")
     if validate_name_country(player_country):
         break
     else:
@@ -98,6 +98,9 @@ hidden_password = ['?' for _ in range(6)]
 
 # Main game loop
 while True:
+    # Reset correct_numbers for each guess
+    correct_numbers = 0
+    
     # Display hidden password
     print(" ".join(str(x) for x in hidden_password))
 
@@ -139,7 +142,6 @@ while True:
     guess = [int(x) for x in guess_list]
 
     # Check the guess against the password
-    correct_numbers = 0
     for i in range(6):
         if guess[i] == password[i]:
             hidden_password[i] = str(password[i])
@@ -152,7 +154,7 @@ while True:
     else:
         print("Incorrect guess. Try again.")
         game_outcome = 'Lost'
-
+23
 # Stop stopwatch
 if game_outcome == 'Won':
     end_time = time.time()
