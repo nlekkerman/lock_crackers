@@ -46,7 +46,7 @@ WORKSHEET_NAME = 'info'
 worksheet = SHEET.worksheet(WORKSHEET_NAME)
 
 # Displaying rules
-print("??? LOCK CRACKERS ???")
+print("        ??? LOCK CRACKERS ???")
 print("Welcome to the Password Guessing Game!")
 print("Rules:")
 print("- You need to guess a password which consists of 6 numbers.")
@@ -100,6 +100,7 @@ hidden_password = ['?' for _ in range(6)]
 while True:
     # Reset correct_numbers for each guess
     correct_numbers = 0
+    correct_positions = []  # List to store positions of correct numbers
     
     # Display hidden password
     print(" ".join(str(x) for x in hidden_password))
@@ -146,13 +147,17 @@ while True:
         if guess[i] == password[i]:
             hidden_password[i] = str(password[i])
             correct_numbers += 1
-
+            correct_positions.append(i + 1)  # Append position of correct number
+    
     if correct_numbers == 6:
         print("Congratulations! You guessed the password correctly!")
         game_outcome = 'Won'
         break
     else:
-        print("Incorrect guess. Try again.")
+        if correct_positions:
+            print(f"Correct number/s found at position/s: {', '.join(map(str, correct_positions))}")
+        else:
+            print("Incorrect guess. Try again.")
         game_outcome = 'Lost'
 
 # Stop stopwatch
@@ -161,9 +166,9 @@ if game_outcome == 'Won':
     elapsed_time = round(end_time - start_time, 1)
     print(f"Elapsed time: {int(elapsed_time)} seconds")
 
-# Saving player's information and game outcome to Google Sheets
-player_info = [player_name, player_country, mode, game_outcome, elapsed_time]
-worksheet.append_row(player_info)
+    # Saving player's information and game outcome to Google Sheets
+    player_info = [player_name, player_country, mode, game_outcome, elapsed_time]
+    worksheet.append_row(player_info)
 
 # Printing the leaderboard based on the best times of players
 print("Leaderboard (Sorted by Best Time):")
@@ -172,4 +177,3 @@ leaderboard_data = worksheet.get_all_values()[1:]
 leaderboard_data.sort(key=lambda x: float(x[-1]))
 for row in leaderboard_data:
       print("{:<10} {:<14} {:<8} {:<8} {}".format(*row))
-
