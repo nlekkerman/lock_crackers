@@ -1,10 +1,16 @@
 import gspread
 from google.oauth2.service_account import Credentials
+import random
+import time
+
 
 # Function to validate input
 def validate_name_country(input_string):
     return all(char.isalpha() for char in input_string)
 
+# Function to validate game mode input
+def validate_game_mode(mode):
+    return mode in ['C', 'E', 'H']
 
 # Google Sheets credentials and API setup
 SCOPE = [
@@ -51,3 +57,23 @@ while True:
 
 # Display welcome message
 print(f"Welcome, {player_name} from {player_country}!")
+
+# Ask for game mode and start the timer
+start_time = time.time()
+while True:
+    mode = input("Choose the game mode - 'C' for child, 'E' for easy, or 'H' for hard: ").strip().upper()
+    if validate_game_mode(mode):
+        break
+    else:
+        print("Invalid input. Please enter 'C', 'E', or 'H'.")
+        
+# Generate a random password based on game mode
+if mode == 'C':
+    password = [random.randint(0, 3) for _ in range(6)]
+    difficulty_range = '0-3'
+elif mode == 'E':
+    password = [random.randint(0, 5) for _ in range(6)]
+    difficulty_range = '0-5'
+elif mode == 'H':
+    password = [random.randint(0, 9) for _ in range(6)]
+    difficulty_range = '0-9'
