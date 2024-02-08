@@ -6,7 +6,7 @@ import time
 
 # Function to validate input
 def validate_name_country(input_string):
-    return all(char.isalpha() for char in input_string)
+    return all(char.isalpha() or char.isspace() for char in input_string)
 
 # Function to validate game mode input
 def validate_game_mode(mode):
@@ -165,8 +165,9 @@ worksheet.append_row(player_info)
 
 # Printing the leaderboard based on the best times of players
 print("Leaderboard (Sorted by Best Time):")
-print("Name\tCount\tLevel\tStatus\tTime")
+print("Name        Country      Level     Status    Time")
 leaderboard_data = worksheet.get_all_values()[1:]
 leaderboard_data.sort(key=lambda x: float(x[-1]))
 for row in leaderboard_data:
-    print("\t".join(row))
+      print("{:<10} {:<14} {:<8} {:<8} {}".format(*row))
+
