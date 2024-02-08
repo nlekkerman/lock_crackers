@@ -154,7 +154,7 @@ while True:
     else:
         print("Incorrect guess. Try again.")
         game_outcome = 'Lost'
-23
+
 # Stop stopwatch
 if game_outcome == 'Won':
     end_time = time.time()
