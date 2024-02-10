@@ -108,6 +108,7 @@ elif mode == 'H':
 hidden_password = ['?' for _ in range(6)]
 # Main game loop
 while True:
+    game_outcome = 'Ongoing'
     # Reset correct_numbers for each guess
     correct_numbers = 0
     correct_positions = []  # List to store positions of correct numbers
