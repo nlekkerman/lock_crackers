@@ -60,14 +60,22 @@ WORKSHEET_NAME = 'info'
 worksheet = SHEET.worksheet(WORKSHEET_NAME)
 
 # Displaying rules
-print("??? LOCK CRACKERS ???")
+
 print("        ??? LOCK CRACKERS ???")
 print("Welcome to the Password Guessing Game!")
 print("Rules:")
-print("- You need to guess a password which consists of 6 numbers.")
-print("- Each '?' represents one number from 0 to 9.")
-print("- You have to guess the password by entering 6 numbers.")
-print("- If your guess matches the correct number, it will be revealed.")
+print("- You need to guess a password, which consists of 6 numbers.")
+print("- The numbers in the password are within a specific range depending on the difficulty level:")
+print("  - For 'C' (Child) mode, the numbers range from 0 to 3.")
+print("  - For 'E' (Easy) mode, the numbers range from 0 to 5.")
+print("  - For 'H' (Hard) mode, the numbers range from 0 to 9.")
+print("- Each '??' represents one number from the corresponding range.")
+print("- Your task is to guess the password by entering 6 numbers.")
+print("- If your guess contains the correct number at the correct position, it will be revealed.")
+print("- For example, if the password is '123456' and your guess is '143256',")
+print("  the revealed password will be '1*3*5*'.")
+print("- Use the revealed parts of the password to make subsequent guesses.")
+print("- Keep guessing until you reveal the entire password.")
 print()
 # Get player's name
 while True:
@@ -172,19 +180,23 @@ if game_outcome == 'Won':
     end_time = time.time()
     elapsed_time = round(end_time - start_time, 1)
     print(f"Elapsed time: {int(elapsed_time)} seconds")
+elif game_outcome == 'Quit':  # Handle case where the player quits
+    end_time = time.time()
+    elapsed_time = round(end_time - start_time, 1)
+    print(f"Elapsed time: {int(elapsed_time)} seconds")
+    print("You quit the game.")  # Print a message indicating the player quit
+else:
+    elapsed_time = 0  # If the game outcome is not 'Won' or 'Quit', set elapsed time to 0
 
 # Saving player's information and game outcome to Google Sheets
-player_info = [player_name, player_country, mode, game_outcome, elapsed_time]
-worksheet.append_row(player_info)
- 
+if game_outcome != 'Quit':  # Only append information to Google Sheets if the game wasn't quit
+    player_info = [player_name, player_country, mode, game_outcome, elapsed_time]
+    worksheet.append_row(player_info)
+
 # Printing the leaderboard based on the best times of players
 print("Leaderboard (Sorted by Best Time):")
 print("Name        Country      Level     Status    Time")
 leaderboard_data = worksheet.get_all_values()[1:]
 leaderboard_data.sort(key=lambda x: float(x[-1]))
 for row in leaderboard_data:
-      print("{:<10} {:<14} {:<8} {:<8} {}".format(*row))
-      
-      
-      
-      #<a href="https://www.freepik.com/free-vector/vector-security-padlock-chrome-steel-with-dial-isolated-white_11062003.htm#query=picking%20lock&position=43&from_view=search&track=ais&uuid=536fd1dd-973c-484d-8007-6c1ffcf3e43d">Image by macrovector</a> on Freepik
+    print("{:<10} {:<14} {:<8} {:<8} {}".format(*row))
