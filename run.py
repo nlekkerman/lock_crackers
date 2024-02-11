@@ -43,6 +43,7 @@ def validate_password(input_string, mode):
 # Function to validate confirmation input
 def validate_confirmation_input(input_string):
     return input_string.lower() in ['y', 'n']
+
 # Google Sheets credentials and API setup
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -77,6 +78,7 @@ print("  the revealed password will be '1*3*5*'.")
 print("- Use the revealed parts of the password to make subsequent guesses.")
 print("- Keep guessing until you reveal the entire password.")
 print()
+
 # Get player's name
 while True:
     player_name = input("What's your name? ")
@@ -84,6 +86,7 @@ while True:
         break
     else:
         print("Please enter a valid name with only letters from 'a' to 'z'.")
+
 # Get player's country
 while True:
     player_country = input("Where are you from? ")
@@ -91,8 +94,10 @@ while True:
         break
     else:
         print("Please enter a valid country with only letters from 'a' to 'z'.")
+
 # Display welcome message
 print(f"Welcome, {player_name} from {player_country}!")
+
 # Ask for game mode and start the timer
 start_time = time.time()
 while True:
@@ -101,7 +106,7 @@ while True:
         break
     else:
         print("Invalid input. Please enter 'C', 'E', or 'H'.")
-        
+
 # Generate a random password based on game mode
 if mode == 'C':
     password = [random.randint(0, 3) for _ in range(6)]
@@ -112,8 +117,9 @@ elif mode == 'E':
 elif mode == 'H':
     password = [random.randint(0, 9) for _ in range(6)]
     difficulty_range = '0-9'
-    
+
 hidden_password = ['?' for _ in range(6)]
+
 # Main game loop
 while True:
     game_outcome = 'Ongoing'
@@ -123,8 +129,10 @@ while True:
 
     # Display hidden password
     print(" ".join(str(x) for x in hidden_password))
+
     # Get user's guess
     guess = input(f"Enter your guess (6 numbers separated by spaces, or press 'q' to quit): ").strip()
+
     # Check if user wants to quit
     if guess.lower() == 'q':
         while True:
@@ -135,32 +143,36 @@ while True:
                     elapsed_time = round(end_time - start_time, 1)
                     print(f"Elapsed time: {int(elapsed_time)} seconds")
                     print("The password was:", " ".join(str(x) for x in password))
+                    game_outcome = 'Quit'
                     break
                 elif confirm_quit == 'n':
                     break
             else:
                 print("Invalid input. Please enter 'Y' or 'N'.")
-        if confirm_quit == 'y':
+        if game_outcome == 'Quit':
             break
         else:
             continue
+
     # Check if the guess has 6 numbers
     guess_list = guess.split()
     if len(guess_list) != 6:
         print("Please enter 6 numbers or 'q' to quit.")
         continue
+
     # Validate the password input based on difficulty level
     if not validate_password(guess, mode):
         print(f"Please enter valid numbers within the difficulty range {difficulty_range}.")
         continue
+
     # Convert the guess to integers
     guess = [int(x) for x in guess_list]
+
     # Check the guess against the password
     for i in range(6):
         if guess[i] == password[i]:
             hidden_password[i] = str(password[i])
             correct_numbers += 1
-
             correct_positions.append(i + 1)  # Append position of correct number
 
     if correct_numbers == 6:
@@ -176,17 +188,9 @@ while True:
         game_outcome = 'Lost'
 
 # Stop stopwatch
-if game_outcome == 'Won':
-    end_time = time.time()
-    elapsed_time = round(end_time - start_time, 1)
-    print(f"Elapsed time: {int(elapsed_time)} seconds")
-elif game_outcome == 'Quit':  # Handle case where the player quits
-    end_time = time.time()
-    elapsed_time = round(end_time - start_time, 1)
-    print(f"Elapsed time: {int(elapsed_time)} seconds")
-    print("You quit the game.")  # Print a message indicating the player quit
-else:
-    elapsed_time = 0  # If the game outcome is not 'Won' or 'Quit', set elapsed time to 0
+end_time = time.time()
+elapsed_time = round(end_time - start_time, 1)
+print(f"Elapsed time: {int(elapsed_time)} seconds")
 
 # Saving player's information and game outcome to Google Sheets
 if game_outcome != 'Quit':  # Only append information to Google Sheets if the game wasn't quit
