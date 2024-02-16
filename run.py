@@ -141,7 +141,11 @@ def print_input_instructions(instructions, color=Fore.WHITE):
     Returns:
         None
     """
-    print(f"{Back.RED}{Fore.WHITE}{color}{' ' * 3} {instructions.center(len(instructions) + 6)}{' ' * 3}{Fore.RESET}{Back.RESET}")
+    print(
+        f"{Back.RED}{Fore.WHITE}{color}{' ' * 3} "
+        f"{instructions.center(len(instructions) + 6)}"
+        f"{' ' * 3}{Fore.RESET}{Back.RESET}"
+    )
 
 
 def get_input_password(input_message, color):
@@ -261,9 +265,9 @@ def print_game_rules():
 
     for index, rule in enumerate(rules):
         color = colors[index % len(colors)]
-        padding = (TERMINAL_WIDTH - len(rule)) // 2
-        centered_rule = f"{'' * padding}{rule}{' ' * padding}"
-        print(f"{color}{Style.BRIGHT}{centered_rule}{Style.RESET_ALL}")
+        padding_rule = (TERMINAL_WIDTH - len(rule)) // 2
+        centered_rule = f"{'' * padding_rule}{rule}{' ' * padding_rule}"
+        print(f"{color}{Style.BRIGHT}{centered_rule}{Fore.RESET}{Back.RESET}")
 
 
 def print_password(password_guess):
@@ -393,7 +397,7 @@ while True:
     print_input_instructions(
         "Choose the game mode - 'C' for child, "
         "'E' for easy, or 'H' for hard: ",
-        color=Fore.BLUE
+        color=Fore.WHITE
         )
 
     user_mode = get_input("Your level:", f"{Fore.YELLOW}").strip().upper()
