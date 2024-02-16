@@ -442,7 +442,7 @@ while True:
     print()
     print()
 
-    PASSWORD_INSTRUCTION_STRING = "Enter your password guess or Q for quit: "
+    PASSWORD_INSTRUCTION_STRING = "Enter your password guess, 6 numbers separated by space or Q for quit! "
     print_input_instructions(PASSWORD_INSTRUCTION_STRING, Fore.WHITE)
 
     print()
