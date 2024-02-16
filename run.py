@@ -141,9 +141,7 @@ def print_input_instructions(instructions, color=Fore.WHITE):
     Returns:
         None
     """
-    print(f"{Back.BLUE}{Fore.WHITE}{color}{' ' * 3}"
-          f"{instructions.center(len(instructions) + 6)}"
-          f"{' ' * 3}{Style.RESET_ALL}")
+    print(f"{Back.BLUE}{Fore.WHITE}{color}{' ' * 3} {instructions.center(len(instructions) + 6)}{' ' * 3}{Style.RESET_ALL}")
 
 
 def get_input_password(input_message, color):
