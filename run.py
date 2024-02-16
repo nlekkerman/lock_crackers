@@ -141,7 +141,7 @@ def print_input_instructions(instructions, color=Fore.MAGENTA):
     Returns:
         None
     """
-    print(f"{Back.BLUE}{color}{' ' * 3}"
+    print(f"{Back.BLUE}{Fore.WHITE}{color}{' ' * 3}"
           f"{instructions.center(len(instructions) + 6)}"
           f"{' ' * 3}{Style.RESET_ALL}")
 
