@@ -141,7 +141,7 @@ def print_input_instructions(instructions, color=Fore.WHITE):
     Returns:
         None
     """
-    print(f"{Back.RED}{Fore.WHITE}{color}{' ' * 3} {instructions.center(len(instructions) + 6)}{' ' * 3}{Style.RESET_ALL}")
+    print(f"{Back.RED}{Fore.WHITE}{color}{' ' * 3} {instructions.center(len(instructions) + 6)}{' ' * 3}{Fore.RESET}{Back.RESET}")
 
 
 def get_input_password(input_message, color):
@@ -172,20 +172,19 @@ def get_input(input_message, color):
     Get input from the user.
 
     Args:
-        message (str): The message prompt.
+        input_message (str): The message prompt.
         color (str): The color of the prompt.
 
     Returns:
         str: The user input.
     """
     while True:
-        user_input = input(f"{color}{input_message} {Fore.GREEN}")
+        user_input = input(f"{color}{input_message}{Fore.GREEN} ")
         if user_input and all(
             char.isalpha() or char.isspace() for char in user_input
         ):
             return user_input
-        print(Fore.RED + "Invalid input. Please enter "
-              "only letters and spaces. " + Fore.RESET)
+        print(Fore.RED + "Invalid input. Please enter only letters and spaces. " + Fore.RESET)
 
 
 def print_centered_text(text, color):
@@ -306,11 +305,12 @@ def choose_difficulty_level():
         str: The difficulty level chosen by the player.
     """
     while True:
-        print_input_instructions("Choose difficulty level:")
+        print_input_instructions("Choose difficulty level:", Fore.YELLOW)
         print_input_instructions("Enter 'C' for Child mode (0-3)")
         print_input_instructions("Enter 'E' for Easy mode (0-5)")
         print_input_instructions("Enter 'H' for Hard mode (0-9)")
-        difficulty = get_input("Choose mode level:", Fore.MAGENTA).upper()
+        difficulty = get_input("Choose mode level:", Fore.YELLOW).upper()
+        print(Style.RESET_ALL)
         if difficulty in ['C', 'E', 'H']:
             return difficulty
         print(f"{Fore.RED}Invalid input."
@@ -344,22 +344,29 @@ def main():
 INPUT_INSTRUCTIONS = "Enter your name:"
 
 # Greeting the player with red background and white letters
-print_input_instructions("Hi player, what is your name?")
-player_name = get_input(INPUT_INSTRUCTIONS, f"{Fore.MAGENTA}{Style.RESET_ALL}")
+print_input_instructions("Hi player, what is your name? ", )
+player_name = get_input("Enter your name ", Fore.YELLOW)
 clear_screen()
 print_title()
 print(Style.RESET_ALL)
 print()
 
 print_input_instructions("Where are you from?")
-player_country = get_input("Your location:", f"{Fore.MAGENTA}{Style.RESET_ALL}")
-print(Style.RESET_ALL)  # Reset color
+player_country = get_input("Your location: ", Fore.YELLOW)
+
 clear_screen()
 print_title()
 print()  # Empty line
 
-message = f"Welcome, {player_name} from {player_country}!"
-centered_message = message.center(TERMINAL_WIDTH)
+name_part = f"{Fore.YELLOW}{player_name}{Fore.RESET}"
+country_part = (
+    f"{Fore.RED} from{Fore.RESET} "
+    f"{Fore.YELLOW}{player_country}{Fore.RESET}"
+)
+
+TERMINAL_WIDTH = 114
+MESSAGE = f"                      Welcome, {name_part} {country_part}!"
+centered_message = MESSAGE.center(TERMINAL_WIDTH)
 
 
 print(f"{Fore.RED}{centered_message}{Style.RESET_ALL}")
@@ -389,7 +396,7 @@ while True:
         color=Fore.BLUE
         )
 
-    user_mode = get_input("Your level:", f"{Fore.MAGENTA}").strip().upper()
+    user_mode = get_input("Your level:", f"{Fore.YELLOW}").strip().upper()
 
     if validate_game_mode(user_mode):
         break
@@ -401,13 +408,13 @@ while True:
 # Generate a random password based on game mode
 if user_mode == 'C':
     password = [random.randint(0, 3) for _ in range(6)]
-    DIFFICULTY_RANGE = '0-3'
+    DIFFICULTY_RANGE = '0 - 3'
 elif user_mode == 'E':
     password = [random.randint(0, 5) for _ in range(6)]
-    DIFFICULTY_RANGE = '0-5'
+    DIFFICULTY_RANGE = '0 - 5'
 elif user_mode == 'H':
     password = [random.randint(0, 9) for _ in range(6)]
-    DIFFICULTY_RANGE = '0-9'
+    DIFFICULTY_RANGE = '0 - 9'
 
 clear_screen()
 
@@ -432,12 +439,12 @@ while True:
     print()
 
     PASSWORD_INSTRUCTION_STRING = "Enter your password guess or Q for quit: "
-    print_input_instructions(PASSWORD_INSTRUCTION_STRING, Fore.BLUE)
+    print_input_instructions(PASSWORD_INSTRUCTION_STRING, Fore.WHITE)
 
     print()
     # Get user's guess
     guess = get_input_password(
-        "Your guess: ", f"{Fore.MAGENTA}"
+        "Your guess: ", f"{Fore.YELLOW}"
         ).strip()
     # Reset color
     clear_screen()
@@ -475,13 +482,53 @@ while True:
     # Check if the guess has 6 numbers
     guess_list = guess.split()
     if len(guess_list) != 6:
-        print(Fore.RED + "Please enter 6 numbers or 'q' to quit." + Fore.RESET)
+        TERMINAL_WIDTH = 113
+        # Print empty red lines above the message
+
+        print(Back.RED + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
+
+        # Print the centered message
+        MESSAGE = "Please enter 6 numbers separated by space or 'q' to quit."
+        padding = (TERMINAL_WIDTH - len(MESSAGE)) // 2
+        centered_message = (
+                f"{' ' * padding}"  # Left padding
+                f"{Fore.RED}"        # Red color
+                f"{MESSAGE}"         # Message content
+                f"{Fore.RESET}"      # Reset color
+                f"{' ' * padding}"   # Right padding
+            )
+        print(centered_message)
+
+        # Print empty red line below the message
+        print(Back.RED + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
+        print()
         continue
 
     # Validate the password input based on difficulty level
     if not validate_password(guess, user_mode):
-        print(Fore.RED + "Please enter valid numbers within"
-              f" the difficulty range {DIFFICULTY_RANGE}." + Fore.RESET)
+        TERMINAL_WIDTH = 113
+
+        # Print empty red lines above the message
+        print(Back.RED + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
+
+        # Print the centered message
+        MESSAGE = (
+            f"Enter valid numbers within the difficulty range: "
+            f"{Fore.YELLOW} {DIFFICULTY_RANGE}{Fore.RESET}."
+        )
+
+        padding = (TERMINAL_WIDTH - len(MESSAGE)) // 2
+        centered_message = (
+            f"{' ' * padding}"  # Left padding
+            f"{Fore.RED}"  # Red color
+            f"{MESSAGE}"  # Message content
+            f"{Fore.RESET}"  # Reset color
+            f"{' ' * padding}"  # Right padding
+        )
+        print(centered_message)
+
+        # Print empty red line below the message
+        print(Back.RED + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
         continue
 
     # Convert the guess to integers
@@ -489,11 +536,42 @@ while True:
 
     # Check if any number in the guess is,
     # already correctly guessed on the same position
+    # Check if any number in the guess is already correctly guessed
+    # Check if any revealed numbers are in the correct position,
+    # but not yet revealed
+    REVEALED_NUMBERS_IN_CORRECT_POSITION = False
     for i, digit in enumerate(guess):
         if correctly_guessed_positions[i] and digit != password[i]:
-            padding = (TERMINAL_WIDTH - len(f"Please enter {password[i]} for position {i + 1}")) // 2
-            centered_message = f"{' ' * padding}{Fore.RED}Please enter {password[i]} for position {i + 1}{Fore.RESET}{' ' * padding}"
-            print(centered_message)
+            TERMINAL_WIDTH = 113
+            padding = (
+                TERMINAL_WIDTH - len(f"Please enter {password[i]} for position {i + 1}")) // 2
+            centered_message = (
+                f"{Fore.RED}Please enter"
+                f"{Fore.YELLOW} {password[i]}"
+                f"{Fore.RED} on position"
+                f"{Fore.YELLOW} {i + 1}"
+                f"{Fore.RESET}"
+            )
+
+            # Print empty red line Above the message
+            print(Back.RED + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
+
+            print(' ' * padding + centered_message)
+            # Print empty red line below the message
+            print(Back.RED + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
+            REVEALED_NUMBERS_IN_CORRECT_POSITION = True
+            break
+        # If there are revealed numbers in the correct
+        # position but not yet revealed,
+        # prompt the user to enter their guess again
+        if REVEALED_NUMBERS_IN_CORRECT_POSITION:
+            MESSAGE = ("Some revealed numbers are in the correct "
+                       "position but not yet revealed. "
+                       "Please enter your guess again.")
+            print(MESSAGE)
+            continue
+
+# Restart the loop to prompt the user again
     else:
         # Check the guess against the password
         for i in range(6):
@@ -504,15 +582,17 @@ while True:
                 correct_positions.append(i + 1)
 
         if CORRECT_NUMBERS == 6:
-            clear_screen()
-            # Define the text
-            TERMINAL_WIDTH = 114
-            print()
-
-            GAME_OUTCOME = 'Won'
+            # Handling winning logic here
+            # ...
             break
 
-        # Centered message for incomplete guess
+        # Check if there are revealed numbers but not in the correct positions
+        if any(correctly_guessed_positions) and CORRECT_NUMBERS == 0:
+            print("Revealed numbers are not in the correct positions.")
+            print("Please try again.")
+            continue  # Prompt user to guess again
+
+        # Display incomplete guess message
         INCOPLETE_MESSAGE = "Keep trying until you crack them all..."
         TERMINAL_WIDTH = 114
         PADDING = (TERMINAL_WIDTH - len(INCOPLETE_MESSAGE)) // 2
@@ -522,6 +602,8 @@ while True:
             f"{' ' * PADDING}{Style.RESET_ALL}"
         )
         print(centered_incomplete_message)
+
+        # Display correct positions message
         if correct_positions:
             CORRECT_MESSAGE = "Correct number/s found at position/s:"
             CORRECT_POSITIONS_STRING = ', '.join(map(str, correct_positions))
@@ -535,11 +617,10 @@ while True:
 
         GAME_OUTCOME = 'Lost'
 
-
 # Stop stopwatch
 end_time = time.time()
 elapsed_time = round(end_time - start_time, 1)
-
+TERMINAL_WIDTH = 113
 print()
 print()
 print()
@@ -547,18 +628,25 @@ clear_screen()
 print_title()
 print()
 print(Back.RESET)
-TEXT_TO_CENTER = "Congratulations!"
+TEXT_TO_CENTER = "LOCK CRACKER!"
+
+# Calculate the centered text
 CENTERED_TEXT = TEXT_TO_CENTER.center(TERMINAL_WIDTH)
+
+# Print the centered text
 print_congratulations_text(CENTERED_TEXT)
-output_line = (Back.RESET + Fore.GREEN + "                         " +
-               "                    PASSWORD " + Fore.RESET + ":" +
-               Fore.YELLOW + ' '.join(str(x) for x in password) + Fore.RESET)
-print(Fore.YELLOW + ' ' + Fore.RESET)
-
-# Print the centered output line
-print(output_line)
-
 print()
+TEXT_PASWORD_WAS_CENTER = "PASSWORD WAS:"
+
+# Calculate the centered text
+CENTERED_PASWORD_WAS_TEXT = TEXT_PASWORD_WAS_CENTER.center(TERMINAL_WIDTH)
+
+# Print the centered text
+print_congratulations_text(CENTERED_PASWORD_WAS_TEXT)
+# Print the centered output line
+print_congratulations_text(' '.join(str(x) for x in password))
+print()  # Print an empty line after the centered output
+
 # Saving player's information and game outcome to Google Sheets
 if GAME_OUTCOME != 'Quit':
     player_info = [
