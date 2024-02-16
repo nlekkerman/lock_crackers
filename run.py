@@ -141,7 +141,7 @@ def print_input_instructions(instructions, color=Fore.WHITE):
     Returns:
         None
     """
-    print(f"{Back.BLUE}{Fore.WHITE}{color}{' ' * 3} {instructions.center(len(instructions) + 6)}{' ' * 3}{Style.RESET_ALL}")
+    print(f"{Back.RED}{Fore.WHITE}{color}{' ' * 3} {instructions.center(len(instructions) + 6)}{' ' * 3}{Style.RESET_ALL}")
 
 
 def get_input_password(input_message, color):
@@ -345,14 +345,14 @@ INPUT_INSTRUCTIONS = "Enter your name:"
 
 # Greeting the player with red background and white letters
 print_input_instructions("Hi player, what is your name?")
-player_name = get_input(INPUT_INSTRUCTIONS, f"{Fore.MAGENTA}")
+player_name = get_input(INPUT_INSTRUCTIONS, f"{Fore.MAGENTA}{Style.RESET_ALL}")
 clear_screen()
 print_title()
 print(Style.RESET_ALL)
 print()
 
-print_input_instructions("Where are you from?", color=Fore.BLUE)
-player_country = get_input("Your location:", f"{Fore.MAGENTA}")
+print_input_instructions("Where are you from?")
+player_country = get_input("Your location:", f"{Fore.MAGENTA}{Style.RESET_ALL}")
 print(Style.RESET_ALL)  # Reset color
 clear_screen()
 print_title()
