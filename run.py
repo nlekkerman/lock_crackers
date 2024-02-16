@@ -129,7 +129,7 @@ def print_title():
     )
 
 
-def print_input_instructions(instructions, color=Fore.MAGENTA):
+def print_input_instructions(instructions, color=Fore.WHITE):
     """
     Print input instructions with a specified color.
 
