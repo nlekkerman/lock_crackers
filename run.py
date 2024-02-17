@@ -179,11 +179,6 @@ def get_input_password(input_message, color):
             char.isdigit() or char.isspace() for char in user_input
         ):
             return user_input
-        clear_screen()
-        print(Back.RED + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
-        print_congratulations_text(message_invalid_input)
-        print(Back.RED + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
-        print_password(HIDDEN_PASSWORD_STRING)
 
 
 def get_input(input_message, color):
@@ -306,7 +301,7 @@ def print_password(password_guess):
         None
     """
     terminal_width = shutil.get_terminal_size().columns
-    padding_print_password = (terminal_width - len(password_guess)) // 2
+    padding = (terminal_width - len(password_guess)) // 2
 
     # Convert revealed numbers to green and question marks to red
     formatted_guess = ""
@@ -315,16 +310,15 @@ def print_password(password_guess):
             formatted_guess += f"{Fore.GREEN}{char}"
         else:
             formatted_guess += f"{Fore.WHITE}{char}"
-    print_title()
+
     print()
-    print_congratulations_text(
-        "CRACK THIS PASSWORD", background_color=Back.BLACK)
+    print_congratulations_text("CRACK THIS PASSWORD", background_color=Back.BLACK)
 
     # Print the formatted password
     print(f"{Back.WHITE}{' ' * terminal_width}")
     print(
-        f"{Back.BLACK}{Fore.WHITE}{' ' * padding_print_password}"
-        F"{formatted_guess}{' ' * padding_print_password}"
+        f"{Back.BLACK}{Fore.WHITE}{' ' * padding}"
+        F"{formatted_guess}{' ' * padding}"
         f"{Style.RESET_ALL}"
     )
     print(f"{Back.WHITE}{' ' * terminal_width}")
@@ -356,10 +350,12 @@ print_welcome_message()
 # Delay for 2 seconds
 time.sleep(2)
 # Clear the screen
-clear_screen()
+os.system('cls' if os.name == 'nt' else 'clear')
 
 
 print_title()
+
+
 print()
 
 
@@ -375,12 +371,11 @@ INPUT_INSTRUCTIONS = "Enter your name:"
 # Greeting the player with red background and white letters
 print_input_instructions("Hi player, what is your name? ", )
 player_name = get_input("Enter your name ", Fore.YELLOW)
-clear_screen()
-print_title()
+
 print(Style.RESET_ALL)
 
 
-print_input_instructions("Where are you from?")
+print_input_instructions("Where are you from " + player_name + "?")
 player_country = get_input("Your location: ", Fore.YELLOW)
 
 clear_screen()
@@ -409,11 +404,6 @@ print(Back.WHITE + '=' * TERMINAL_WIDTH + Style.RESET_ALL)
 
 time.sleep(3)
 
-# Clear the screen again
-clear_screen()
-
-print_title()
-print()
 # Ask for game mode and start the timer
 start_time = time.time()
 
@@ -467,18 +457,18 @@ while True:
     # Display hidden password
     TERMINAL_WIDTH = 113
     HIDDEN_PASSWORD_STRING = " ".join(str(x) for x in hidden_password)
-
+    
     print_password(HIDDEN_PASSWORD_STRING)
 
     print()
     print()
+
     # Get user's guess
     guess = get_input_password(
         "Your guess: ", f"{Fore.YELLOW}"
         ).strip()
-    # Reset color
     clear_screen()
-
+    print_title()
     # Check if user wants to quit
     if guess.lower() == 'q':
         while True:
@@ -520,13 +510,13 @@ while True:
 
         # Print the centered message
         MESSAGE = "Please enter 6 numbers separated by space or 'q' to quit."
-        PADDING = (TERMINAL_WIDTH - len(MESSAGE)) // 2
+        padding = (TERMINAL_WIDTH - len(MESSAGE)) // 2
         centered_message = (
-                f"{' ' * PADDING}"  # Left padding
+                f"{' ' * padding}"  # Left padding
                 f"{Fore.WHITE}"        # Red color
                 f"{MESSAGE}"         # Message content
                 f"{Fore.RESET}"      # Reset color
-                f"{' ' * PADDING}"   # Right padding
+                f"{' ' * padding}"   # Right padding
             )
         print(centered_message)
 
@@ -548,13 +538,13 @@ while True:
             f"{Fore.YELLOW} {DIFFICULTY_RANGE}{Fore.RESET}."
         )
 
-        PADDING = (TERMINAL_WIDTH - len(MESSAGE)) // 2
+        padding = (TERMINAL_WIDTH - len(MESSAGE)) // 2
         centered_message = (
-            f"{' ' * PADDING}"  # Left padding
+            f"{' ' * padding}"  # Left padding
             f"{Fore.RED}"  # Red color
             f"{MESSAGE}"  # Message content
             f"{Fore.RESET}"  # Reset color
-            f"{' ' * PADDING}"  # Right padding
+            f"{' ' * padding}"  # Right padding
         )
         print(centered_message)
 
@@ -574,9 +564,8 @@ while True:
     for i, digit in enumerate(guess):
         if correctly_guessed_positions[i] and digit != password[i]:
             TERMINAL_WIDTH = 113
-            PADDING = (
-                TERMINAL_WIDTH - len(
-                    f"Please enter {password[i]} for position {i + 1}")) // 2
+            padding = (
+                TERMINAL_WIDTH - len(f"Please enter {password[i]} for position {i + 1}")) // 2
             centered_message = (
                 f"{Fore.RED}Please enter"
                 f"{Fore.YELLOW} {password[i]}"
@@ -588,7 +577,7 @@ while True:
             # Print empty red line Above the message
             print(Back.RED + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
 
-            print(' ' * PADDING + centered_message)
+            print(' ' * padding + centered_message)
             # Print empty red line below the message
             print(Back.RED + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
             REVEALED_NUMBERS_IN_CORRECT_POSITION = True
