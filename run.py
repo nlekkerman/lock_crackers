@@ -99,11 +99,13 @@ def print_welcome_message():
         None
     """
     welcome_text = "Welcome to the Lock Cracker game!"
-    print_colored_text("------------------------------", background_color=Back.YELLOW)
-    
-    print_colored_text(welcome_text, background_color=Back.BLACK)
+    print_colored_text(
+        "----------------------------------------", background_color=Back.BLUE)
 
-    print_colored_text("------------------------------", background_color=Back.YELLOW)
+    print_colored_text(welcome_text)
+
+    print_colored_text(
+        "-----------------------------------------", background_color=Back.BLUE)
 
 
 def print_title():
@@ -122,12 +124,9 @@ def print_title():
     welcome_text = "???Lock Crackers???"
     centered_welcome_text = welcome_text.center(terminal_width)
     line = " " * terminal_width
-    print(
-        f"{Back.BLACK}{line}",
-        f"{Back.WHITE}{Fore.RED}{centered_welcome_text}{Style.RESET_ALL}",
-        f"{Back.BLACK}{line}",
-        sep="\n"
-    )
+    print(f"{Back.BLUE}{line}")
+    print_colored_text(centered_welcome_text)
+    print(f"{Back.BLUE}{line}")
 
 
 def print_input_instructions(instructions, color=Fore.WHITE):
@@ -330,7 +329,9 @@ def print_password(password_guess):
             formatted_guess += f"{Fore.WHITE}{char}"
 
     print()
-    print_colored_text("CRACK THIS PASSWORD", background_color=Back.BLACK)
+    print()
+    print()
+    print_colored_text("CRACK THIS PASSWORD")
 
     # Print the formatted password
     print(f"{Back.WHITE}{' ' * terminal_width}")
@@ -366,7 +367,7 @@ print_welcome_message()
 
 
 # Delay for 2 seconds
-time.sleep(2)
+time.sleep(4)
 # Clear the screen
 os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -476,6 +477,7 @@ while True:
     TERMINAL_WIDTH = 113
     HIDDEN_PASSWORD_STRING = " ".join(str(x) for x in hidden_password)
 
+    print_title()
     print_password(HIDDEN_PASSWORD_STRING)
 
     print()
@@ -486,7 +488,7 @@ while True:
         "Your guess: ", f"{Fore.YELLOW}"
         ).strip()
     clear_screen()
-    print_title()
+   
     # Check if user wants to quit
     if guess.lower() == 'q':
         while True:
@@ -598,6 +600,8 @@ while True:
             print(' ' * padding + centered_message)
             # Print empty red line below the message
             print(Back.RED + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
+            
+            print()
             REVEALED_NUMBERS_IN_CORRECT_POSITION = True
             break
         # If there are revealed numbers in the correct
