@@ -57,7 +57,7 @@ def validate_game_mode(mode):
     return mode in ['C', 'E', 'H']
 
 
-def print_congratulations_text(text, background_color=None):
+def print_colored_text(text, background_color=None):
     """
     Print the text "Congratulations!" with each letter in a different color.
 
@@ -98,14 +98,12 @@ def print_welcome_message():
     Returns:
         None
     """
-    terminal_width = shutil.get_terminal_size().columns
     welcome_text = "Welcome to the Lock Cracker game!"
-    centered_welcome_text = welcome_text.center(terminal_width)
-    print(
-        f"\033[43m{'=' * terminal_width}\033[0m" +
-        f"\033[43m{centered_welcome_text}\033[0m" +
-        f"\033[43m{'=' * terminal_width}\033[0m"
-    )
+    print_colored_text("------------------------------", background_color=Back.YELLOW)
+    
+    print_colored_text(welcome_text, background_color=Back.BLACK)
+
+    print_colored_text("------------------------------", background_color=Back.YELLOW)
 
 
 def print_title():
@@ -164,11 +162,8 @@ def get_input_password(input_message, color):
     Returns:
         str: The user input.
     """
-    message_invalid_input = (
-        "Invalid input. Please enter only numbers and spaces, or 'q' to quit.")
     password_instructions_message = (
-     "Enter your password guess, 6 numbers separated by space or Q for quit! "
-        )
+        "Enter your password guess, 6 numbers separated by space or Q for quit! ")
 
     while True:
         print_input_instructions(password_instructions_message, Fore.WHITE)
@@ -255,6 +250,29 @@ def validate_password(input_string, mode):
     return False
 
 
+def print_board_categories(words, colors):
+    """
+    Print each word in a different color.
+
+    Args:
+        words (list): List of words to print.
+        colors (list): List of colorama color codes corresponding to each word.
+
+    Raises:
+        ValueError: If the length of the words and colors lists don't match.
+    """
+    if len(words) != len(colors):
+        raise ValueError("The lengths of words and colors lists must match.")
+
+    # Construct the text with specified colors for each word
+    colored_text = ""
+    for word, color in zip(words, colors):
+        colored_text += f"{color}{word} "
+
+    # Print the colored text
+    print(colored_text.strip())
+
+
 def print_game_rules():
     """
     Print the game rules with alternating colors.
@@ -312,7 +330,7 @@ def print_password(password_guess):
             formatted_guess += f"{Fore.WHITE}{char}"
 
     print()
-    print_congratulations_text("CRACK THIS PASSWORD", background_color=Back.BLACK)
+    print_colored_text("CRACK THIS PASSWORD", background_color=Back.BLACK)
 
     # Print the formatted password
     print(f"{Back.WHITE}{' ' * terminal_width}")
@@ -391,13 +409,13 @@ country_part = (
 TERMINAL_WIDTH = 113
 print(Back.WHITE + '=' * TERMINAL_WIDTH + Style.RESET_ALL)
 print(Back.GREEN + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
-print_congratulations_text("*||| WELCOME |||*", background_color=Back.BLACK)
+print_colored_text("*||| WELCOME |||*", background_color=Back.BLACK)
 print(Back.BLACK + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
-print_congratulations_text(player_name, background_color=Back.BLACK)
+print_colored_text(player_name, background_color=Back.BLACK)
 print(Back.BLACK + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
-print_congratulations_text("~ OF ~", background_color=Back.BLACK)
+print_colored_text("~ OF ~", background_color=Back.BLACK)
 print(Back.BLACK + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
-print_congratulations_text(player_country, background_color=Back.BLACK)
+print_colored_text(player_country, background_color=Back.BLACK)
 print(Back.GREEN + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
 print(Back.WHITE + '=' * TERMINAL_WIDTH + Style.RESET_ALL)
 
@@ -412,7 +430,7 @@ while True:
 
     TEXT_TO_CENTER = "RULES:"
     CENTERED_TITLE = TEXT_TO_CENTER.center(TERMINAL_WIDTH)
-    print_congratulations_text(CENTERED_TITLE)
+    print_colored_text(CENTERED_TITLE)
     print_game_rules()
     print()
 
@@ -457,7 +475,7 @@ while True:
     # Display hidden password
     TERMINAL_WIDTH = 113
     HIDDEN_PASSWORD_STRING = " ".join(str(x) for x in hidden_password)
-    
+
     print_password(HIDDEN_PASSWORD_STRING)
 
     print()
@@ -603,8 +621,7 @@ while True:
                 correct_positions.append(i + 1)
 
         if CORRECT_NUMBERS == 6:
-            # Handling winning logic here
-            # ...
+            GAME_OUTCOME = 'won'
             break
 
         # Check if there are revealed numbers but not in the correct positions
@@ -655,7 +672,7 @@ TEXT_TO_CENTER = "LOCK CRACKER!"
 CENTERED_TEXT = TEXT_TO_CENTER.center(TERMINAL_WIDTH)
 
 # Print the centered text
-print_congratulations_text(CENTERED_TEXT)
+print_colored_text(CENTERED_TEXT)
 print()
 TEXT_PASWORD_WAS_CENTER = "PASSWORD WAS:"
 
@@ -663,9 +680,9 @@ TEXT_PASWORD_WAS_CENTER = "PASSWORD WAS:"
 CENTERED_PASWORD_WAS_TEXT = TEXT_PASWORD_WAS_CENTER.center(TERMINAL_WIDTH)
 
 # Print the centered text
-print_congratulations_text(CENTERED_PASWORD_WAS_TEXT)
+print_colored_text(CENTERED_PASWORD_WAS_TEXT)
 # Print the centered output line
-print_congratulations_text(' '.join(str(x) for x in password))
+print_colored_text(' '.join(str(x) for x in password))
 print()  # Print an empty line after the centered output
 
 # Saving player's information and game outcome to Google Sheets
@@ -677,8 +694,11 @@ if GAME_OUTCOME != 'Quit':
 
 
 # Printing the leaderboard based on the best times of players
-print("Leaderboard (Sorted by Best Time):")
-print("Name        Country      Level     Status    Time")
+print_colored_text("Leaderboard (Sorted by Best Time):")
+print()
+words = ["Name      ", "Country      ", "Level    ", "Status  ", "Time   "]
+colors = [Back.RED, Back.GREEN, Back.BLUE, Back.YELLOW, Back.MAGENTA]
+print_board_categories(words, colors)
 leaderboard_data = worksheet.get_all_values()[1:]
 leaderboard_data.sort(key=lambda x: float(x[-1]))
 
@@ -699,7 +719,7 @@ for i, row in enumerate(leaderboard_data[:10]):
 
 print()
 print()
-print_congratulations_text("JUST PLAYED LOCK CRACKER GAME")
+print_colored_text("JUST PLAYED LOCK CRACKER GAME")
 print()
 
 if __name__ == "__main__":
