@@ -270,7 +270,7 @@ def print_game_rules():
         "  - For 'C' (Child) mode, the numbers range from 0 to 3.",
         "  - For 'E' (Easy) mode, the numbers range from 0 to 5.",
         "  - For 'H' (Hard) mode, the numbers range from 0 to 9.",
-        "- Each '??' represents one number from the corresponding range.",
+        "- Each '?' represents one number from the corresponding range.",
         "- Your task is to guess the password by entering 6 numbers.",
         "- If your guess contains the correct number at the correct position,"
         " it will be revealed.",
@@ -696,6 +696,11 @@ for i, row in enumerate(leaderboard_data[:10]):
         f"{MEDAL_COLOR}{row[0]:<10} {row[1]:<14} {row[2]:<8} "
         f"{row[3]:<8} {row[4]}"
     )
+
+print()
+print()
+print_congratulations_text("JUST PLAYED LOCK CRACKER GAME")
+print()
 
 if __name__ == "__main__":
     main()
