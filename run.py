@@ -408,7 +408,7 @@ country_part = (
 )
 
 TERMINAL_WIDTH = 113
-print(Back.WHITE + '=' * TERMINAL_WIDTH + Style.RESET_ALL)
+print(Back.WHITE + Fore.BLACK + '=' * TERMINAL_WIDTH + Style.RESET_ALL)
 print(Back.GREEN + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
 print_colored_text("*||| WELCOME |||*")
 print()
@@ -418,7 +418,7 @@ print_colored_text("~ OF ~")
 print()
 print_colored_text(player_country)
 print(Back.GREEN + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
-print(Back.WHITE + '=' * TERMINAL_WIDTH + Style.RESET_ALL)
+print(Back.WHITE + Fore.BLACK + '=' * TERMINAL_WIDTH + Style.RESET_ALL)
 
 
 time.sleep(3)
