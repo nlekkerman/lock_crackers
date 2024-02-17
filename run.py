@@ -12,8 +12,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 
 init(autoreset=True)
-TERMINAL_WIDTH = shutil.get_terminal_size().columns
-TERMINAL_WIDTH = 114
+TERMINAL_WIDTH = 113
 
 # Google Sheets credentials and API setup
 SCOPE = [
@@ -58,7 +57,7 @@ def validate_game_mode(mode):
     return mode in ['C', 'E', 'H']
 
 
-def print_congratulations_text(text):
+def print_congratulations_text(text, background_color=None):
     """
     Print the text "Congratulations!" with each letter in a different color.
 
@@ -74,7 +73,11 @@ def print_congratulations_text(text):
     colored_text = ""
     for insx, char in enumerate(centered_text):
         colored_text += f"{colors[insx % len(colors)]}{char}"
-    print(colored_text)
+    # Apply background color if provided
+    if background_color:
+        print(f"{background_color}{colored_text}{Style.RESET_ALL}")
+    else:
+        print(colored_text)
 
 
 def clear_screen():
@@ -159,16 +162,40 @@ def get_input_password(input_message, color):
     Returns:
         str: The user input.
     """
+
     while True:
+        
+
+        password_instructions_message = "Enter your password guess, 6 numbers separated by space or Q for quit! "
+        print_input_instructions(password_instructions_message, Fore.WHITE)
         user_input = input(f"{color}{input_message} {Fore.GREEN}")
         if user_input.lower() == 'q':
-            return 'q'  # Return 'q' if the input is 'q' (quit)
+            return 'q'
         if user_input and all(
             char.isdigit() or char.isspace() for char in user_input
         ):
             return user_input
-        print(Fore.RED + "Invalid input. Please enter "
-              "only numbers and spaces, or 'q' to quit. " + Fore.RESET)
+
+        # Print the centered message
+        message_invalid_input = "Invalid input. Please enter only numbers and spaces, or 'q' to quit."
+        padding_inv_inp = (TERMINAL_WIDTH - len(MESSAGE)) // 2
+        centered_invalid_input = (
+                f"{' ' * padding_inv_inp}"  # Left padding
+                f"{Fore.WHITE}"        # Red color
+                f"{message_invalid_input}"         # Message content
+                f"{Fore.RESET}"      # Reset color
+                f"{' ' * padding_inv_inp}"   # Right padding
+            )
+        clear_screen()
+
+        print(Back.RED + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
+        print(centered_invalid_input)
+
+        # Print empty red line below the message
+        print(Back.RED + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
+        print()
+
+        print_password(HIDDEN_PASSWORD_STRING)
 
 
 def get_input(input_message, color):
@@ -256,6 +283,8 @@ def print_game_rules():
         "- Your task is to guess the password by entering 6 numbers.",
         "- If your guess contains the correct number at the correct position,"
         " it will be revealed.",
+        "-Ensure that any numbers already revealed in previous guesses are "
+        " entered in the correct position for each subsequent guess."
         "  For example, if the password is '123456'"
         " and your guess is '143256',",
         "  the revealed password will be '1*3*5*'.",
@@ -289,12 +318,14 @@ def print_password(password_guess):
         if char.isdigit():
             formatted_guess += f"{Fore.GREEN}{char}"
         else:
-            formatted_guess += f"{Fore.RED}{char}"
+            formatted_guess += f"{Fore.WHITE}{char}"
+    print()
+    print_congratulations_text("CRACK THIS PASSWORD", background_color=Back.BLACK)
 
     # Print the formatted password
     print(f"{Back.WHITE}{' ' * terminal_width}")
     print(
-        f"{Back.BLACK}{Fore.RED}{' ' * padding}"
+        f"{Back.BLACK}{Fore.WHITE}{' ' * padding}"
         F"{formatted_guess}{' ' * padding}"
         f"{Style.RESET_ALL}"
     )
@@ -368,17 +399,24 @@ country_part = (
     f"{Fore.YELLOW}{player_country}{Fore.RESET}"
 )
 
-TERMINAL_WIDTH = 114
-MESSAGE = f"                      Welcome, {name_part} {country_part}!"
-centered_message = MESSAGE.center(TERMINAL_WIDTH)
+TERMINAL_WIDTH = 113
+print(Back.WHITE + '=' * TERMINAL_WIDTH + Style.RESET_ALL)
+print(Back.GREEN + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
+print_congratulations_text("*||| WELCOME |||*", background_color=Back.BLACK)
+print(Back.BLACK + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
+print_congratulations_text(player_name, background_color=Back.BLACK)
+print(Back.BLACK + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
+print_congratulations_text("~ OF ~", background_color=Back.BLACK)
+print(Back.BLACK + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
+print_congratulations_text(player_country, background_color=Back.BLACK)
+print(Back.GREEN + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
+print(Back.WHITE + '=' * TERMINAL_WIDTH + Style.RESET_ALL)
 
 
-print(f"{Fore.RED}{centered_message}{Style.RESET_ALL}")
-
-time.sleep(2)
+time.sleep(3)
 
 # Clear the screen again
-os.system('cls' if os.name == 'nt' else 'clear')
+clear_screen()
 
 print_title()
 print()
@@ -433,19 +471,14 @@ while True:
     correct_positions = []  # List to store positions of correct numbers
 
     # Display hidden password
-    TERMINAL_WIDTH = 80
+    TERMINAL_WIDTH = 113
     HIDDEN_PASSWORD_STRING = " ".join(str(x) for x in hidden_password)
 
     print_password(HIDDEN_PASSWORD_STRING)
 
     print()
     print()
-    print()
-
-    PASSWORD_INSTRUCTION_STRING = "Enter your password guess, 6 numbers separated by space or Q for quit! "
-    print_input_instructions(PASSWORD_INSTRUCTION_STRING, Fore.WHITE)
-
-    print()
+   
     # Get user's guess
     guess = get_input_password(
         "Your guess: ", f"{Fore.YELLOW}"
@@ -462,9 +495,9 @@ while True:
                 "Are you sure you want to quit? (Y/N): "
                 + Fore.RESET + Back.RESET)
             confirm_quit = input(
-                Fore.RED + "(Y/N): " + Fore.RESET + Back.RESET
+                Fore.YELLOW + "(Y/N): " + Fore.RESET + Back.RESET + Fore.GREEN
                 ).strip().lower()
-
+            print(Fore.RESET)
             if validate_confirmation_input(confirm_quit):
                 if confirm_quit == 'y':
                     end_time = time.time()
@@ -479,6 +512,7 @@ while True:
             clear_screen()
             print(Fore.RED + "Invalid input."
                   " Please enter 'Y' or 'N'." + Fore.RESET)
+
         if GAME_OUTCOME == 'Quit':
             break
         continue
@@ -496,7 +530,7 @@ while True:
         padding = (TERMINAL_WIDTH - len(MESSAGE)) // 2
         centered_message = (
                 f"{' ' * padding}"  # Left padding
-                f"{Fore.RED}"        # Red color
+                f"{Fore.WHITE}"        # Red color
                 f"{MESSAGE}"         # Message content
                 f"{Fore.RESET}"      # Reset color
                 f"{' ' * padding}"   # Right padding
@@ -598,7 +632,7 @@ while True:
 
         # Display incomplete guess message
         INCOPLETE_MESSAGE = "Keep trying until you crack them all..."
-        TERMINAL_WIDTH = 114
+        TERMINAL_WIDTH = 113
         PADDING = (TERMINAL_WIDTH - len(INCOPLETE_MESSAGE)) // 2
         centered_incomplete_message = (
             f"{Fore.GREEN}{' ' * PADDING}"
