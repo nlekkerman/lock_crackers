@@ -144,6 +144,8 @@ def print_input_instructions(instructions, color=Fore.WHITE):
     Returns:
         None
     """
+
+    print()
     print(
         f"{Back.RED}{Fore.WHITE}{color}{' ' * 3} "
         f"{instructions.center(len(instructions) + 6)}"
@@ -162,39 +164,20 @@ def get_input_password(input_message, color):
     Returns:
         str: The user input.
     """
+    message_invalid_input = "Invalid input. Please enter only numbers and spaces, or 'q' to quit."
+    password_instructions_message = "Enter your password guess, 6 numbers separated by space or Q for quit! "
 
     while True:
-        
-
-        password_instructions_message = "Enter your password guess, 6 numbers separated by space or Q for quit! "
         print_input_instructions(password_instructions_message, Fore.WHITE)
         user_input = input(f"{color}{input_message} {Fore.GREEN}")
         if user_input.lower() == 'q':
             return 'q'
-        if user_input and all(
-            char.isdigit() or char.isspace() for char in user_input
-        ):
+        if user_input and all(char.isdigit() or char.isspace() for char in user_input):
             return user_input
-
-        # Print the centered message
-        message_invalid_input = "Invalid input. Please enter only numbers and spaces, or 'q' to quit."
-        padding_inv_inp = (TERMINAL_WIDTH - len(MESSAGE)) // 2
-        centered_invalid_input = (
-                f"{' ' * padding_inv_inp}"  # Left padding
-                f"{Fore.WHITE}"        # Red color
-                f"{message_invalid_input}"         # Message content
-                f"{Fore.RESET}"      # Reset color
-                f"{' ' * padding_inv_inp}"   # Right padding
-            )
         clear_screen()
-
         print(Back.RED + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
-        print(centered_invalid_input)
-
-        # Print empty red line below the message
+        print_congratulations_text(message_invalid_input)
         print(Back.RED + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
-        print()
-
         print_password(HIDDEN_PASSWORD_STRING)
 
 
@@ -319,6 +302,7 @@ def print_password(password_guess):
             formatted_guess += f"{Fore.GREEN}{char}"
         else:
             formatted_guess += f"{Fore.WHITE}{char}"
+    print_title()
     print()
     print_congratulations_text("CRACK THIS PASSWORD", background_color=Back.BLACK)
 
@@ -360,10 +344,9 @@ time.sleep(2)
 # Clear the screen
 os.system('cls' if os.name == 'nt' else 'clear')
 
-# Print the title
-print("\033[1;37m" + " " * TERMINAL_WIDTH + "\033[0m")
+
 print_title()
-print("\033[1;37m" + " " * TERMINAL_WIDTH + "\033[0m")
+
 
 
 print()
@@ -384,7 +367,7 @@ player_name = get_input("Enter your name ", Fore.YELLOW)
 clear_screen()
 print_title()
 print(Style.RESET_ALL)
-print()
+
 
 print_input_instructions("Where are you from?")
 player_country = get_input("Your location: ", Fore.YELLOW)
@@ -478,7 +461,7 @@ while True:
 
     print()
     print()
-   
+    
     # Get user's guess
     guess = get_input_password(
         "Your guess: ", f"{Fore.YELLOW}"
