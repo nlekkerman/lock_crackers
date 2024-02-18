@@ -24,15 +24,23 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
 
 1. **Welcome Message and Player Information:**
    - The game starts with a welcome message and prompting the player to enter their name and location.
+
     ![Welcome Message](features/welcome_message.jpg)
+
+   - Before proceeding with the game, certain validations are applied to ensure the correctness of user input. Only letters and spaces are accepted. Any input containing other characters will be rejected, prompting the user to provide valid input.
+
     ![Welcome Message](features/presonal_data_input.jpg)
+
    - The player is greeted with a colorful display of their name and location.
+
     ![Welcome Message](features/greetings_player.jpg)
   
 
 2. **Game Rules:**
    - The game rules are displayed, explaining how to play the game and the objective of cracking the password.
    - Rules are displayed with alternating colors for better visibility.
+
+    ![Welcome Message](features/game_rules.jpg)
 
 3. **Choose Difficulty Level:**
    - The player is prompted to choose a difficulty level: 'C' for Child mode (0-3), 'E' for Easy mode (0-5), or 'H' for Hard mode (0-9).

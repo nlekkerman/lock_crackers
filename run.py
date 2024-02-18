@@ -54,7 +54,11 @@ def validate_game_mode(mode):
     Returns:
     bool: True if the mode is valid ('C', 'E', or 'H'), False otherwise.
     """
-    return mode in ['C', 'E', 'H']
+    valid_modes = ['C', 'E', 'H']
+    if mode not in valid_modes:
+        return False
+    return True
+
 
 
 def print_colored_text(text, background_color=None):
@@ -444,15 +448,14 @@ while True:
         "'E' for easy, or 'H' for hard: ",
         color=Fore.WHITE
         )
-
+    
     user_mode = get_input("Your level:", f"{Fore.YELLOW}").strip().upper()
-
+    clear_screen()
     if validate_game_mode(user_mode):
         break
     print(
         Fore.RED + "Invalid input. Please enter 'C', 'E', or 'H'." + Fore.RESET
         )
-
 
 # Generate a random password based on game mode
 if user_mode == 'C':
@@ -465,7 +468,6 @@ elif user_mode == 'H':
     password = [random.randint(0, 9) for _ in range(6)]
     DIFFICULTY_RANGE = '0 - 9'
 
-clear_screen()
 
 hidden_password = ['?' for _ in range(6)]
 correctly_guessed_positions = [False] * 6  # Track correctly guessed positions
