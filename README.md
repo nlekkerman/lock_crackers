@@ -1,5 +1,9 @@
 # Lock Crackers - Password Guessing Game
 
+
+![Responisve Image](features/responsive_image.jpg)
+
+
 ## Table of Contents
 
 1. [Overview](#overview)
