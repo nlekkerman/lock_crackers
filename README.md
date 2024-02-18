@@ -20,9 +20,11 @@
 
 Lock Crackers is an engaging and entertaining password guessing game designed to test your skills in cracking passwords. It provides an exciting challenge where players attempt to guess a password composed of six numbers within a specific range. With multiple difficulty levels and an intuitive interface, Lock Crackers offers an enjoyable gaming experience for users of all ages.
 
+
+
 ## Game Flow
    **Logic behind the game:**
-   ![Rules](features/logic.jpg)
+   ![Game Flow](features/logic.jpg)
 
 1. **Welcome Message and Player Information:**
    - The game starts with a welcome message and prompting the player to enter their name and location.
@@ -61,21 +63,25 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
      - The player's guess is compared to the hidden password, and feedback is provided based on correctness.
      - The game continues until the player either cracks the password or decides to quit.
 
-![Hidden Password Validation](features/message_pasword_validation.jpg)
-* Hidden Password - Password Validation*
+
+- Hidden Password - Password Validation
 The welcome message displayed when the game starts, ensuring the player's name input is valid.
+![Hidden Password Validation](features/message_pasword_validation.jpg)
 
-![Input Password Validation](features/input_password_valdiation_message.jpg)
-*Input Password Validation Message*
+
+- Input Password Validation Message
 A validation message displayed when the player's guess contains invalid characters or format.
+![Input Password Validation](features/input_password_valdiation_message.jpg)
 
-![Correct Position Validation](features/correct_position_validation.jpg)
-*Correct Position Validation Message*
+
+- Correct Position Validation Message
 Feedback provided when some revealed numbers are in the correct position but not yet revealed.
+![Correct Position Validation](features/correct_position_validation.jpg)
 
-![Quit Input](features/quit_input.jpg)
-*Quit Input Message*
+- Quit Input Message
 Prompt asking the player if they want to quit the game.
+![Quit Input](features/quit_input.jpg)
+
 
 
 
@@ -85,6 +91,7 @@ Prompt asking the player if they want to quit the game.
    - Player information and game outcome are saved to a Google Sheets leaderboard.
    - The leaderboard is displayed, showing the top 10 players sorted by the best time.
 
+![Game Outcome](features/game_outcome.jpg)
 
 
 ## Features
