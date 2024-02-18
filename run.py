@@ -414,7 +414,7 @@ country_part = (
 TERMINAL_WIDTH = 113
 print(Back.WHITE + Fore.BLACK + '=' * TERMINAL_WIDTH + Style.RESET_ALL)
 print(Back.GREEN + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
-print_colored_text(" W E L C O M E ")
+print_colored_text(" G R E E T I N G S ")
 print()
 print_colored_text(player_name)
 print()
