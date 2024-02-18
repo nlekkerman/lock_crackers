@@ -64,9 +64,11 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
      - The game continues until the player either cracks the password or decides to quit.
 
 
+
 - Hidden Password - Password Validation
 The welcome message displayed when the game starts, ensuring the player's name input is valid.
 ![Hidden Password Validation](features/message_pasword_validation.jpg)
+
 
 
 - Input Password Validation Message
@@ -74,9 +76,12 @@ A validation message displayed when the player's guess contains invalid characte
 ![Input Password Validation](features/input_password_valdiation_message.jpg)
 
 
+
 - Correct Position Validation Message
 Feedback provided when some revealed numbers are in the correct position but not yet revealed.
 ![Correct Position Validation](features/correct_position_validation.jpg)
+
+
 
 - Quit Input Message
 Prompt asking the player if they want to quit the game.
@@ -125,6 +130,11 @@ Lock Crackers is built using the following technologies:
 - **gspread**: Python library for interacting with Google Sheets.
 - **oauth2client**: Python library for OAuth 2.0 authentication.
 - **ASCII Art**: ASCII art used to enhance the visual presentation of the game.
+- **Windows Paint**: Used for creating graphics and images for the project.
+- **Git**: Version control system used for tracking changes in the project codebase.
+- **Heroku**: Cloud platform used for deploying and hosting the Lock Crackers application.
+- **Visual Studio Code**: Integrated development environment (IDE) used for code editing and project management.
+
 
 ## Goals
 
