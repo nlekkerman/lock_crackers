@@ -23,9 +23,12 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
 ## Game Flow
 
 1. **Welcome Message and Player Information:**
-   - The game starts with a welcome message prompting the player to enter their name and location.
+   - The game starts with a welcome message and prompting the player to enter their name and location.
+    ![Welcome Message](features/welcome_message.jpg)
+    ![Welcome Message](features/presonal_data_input.jpg)
    - The player is greeted with a colorful display of their name and location.
-   ![Welcome Message](features/welcome_message.jpg)
+    ![Welcome Message](features/greetings_player.jpg)
+  
 
 2. **Game Rules:**
    - The game rules are displayed, explaining how to play the game and the objective of cracking the password.
