@@ -72,7 +72,7 @@ def print_colored_text(text, background_color=None):
     centered_text = text.center(TERMINAL_WIDTH)
     colored_text = ""
     for insx, char in enumerate(centered_text):
-        colored_text += f"{colors[insx % len(colors)]}{char}"
+        colored_text += f"{colors[insx % len(colors)]}{Style.BRIGHT}{char}"  
     # Apply background color if provided
     if background_color:
         print(f"{background_color}{colored_text}{Style.RESET_ALL}")
@@ -105,7 +105,7 @@ def print_welcome_message():
     print_colored_text(welcome_text)
 
     print_colored_text(
-        "-----------------------------------------", background_color=Back.BLUE)
+        "----------------------------------------", background_color=Back.BLUE)
 
 
 def print_title():
@@ -249,7 +249,7 @@ def validate_password(input_string, mode):
     return False
 
 
-def print_board_categories(words, colors):
+def print_board_categories(words_text, words_colors):
     """
     Print each word in a different color.
 
@@ -260,12 +260,12 @@ def print_board_categories(words, colors):
     Raises:
         ValueError: If the length of the words and colors lists don't match.
     """
-    if len(words) != len(colors):
+    if len(words_text) != len(words_colors):
         raise ValueError("The lengths of words and colors lists must match.")
 
     # Construct the text with specified colors for each word
     colored_text = ""
-    for word, color in zip(words, colors):
+    for word, color in zip(words_text, words_colors):
         colored_text += f"{color}{word} "
 
     # Print the colored text
@@ -279,7 +279,7 @@ def print_game_rules():
     Returns:
         None
     """
-    colors = [Fore.RED, Fore.BLUE]
+    rules_colors = [Fore.RED, Fore.BLUE]
     rules = [
         "- You need to guess a password, which consists of 6 numbers.",
         "- The numbers in the password are within a specific range "
@@ -301,7 +301,7 @@ def print_game_rules():
     ]
 
     for index, rule in enumerate(rules):
-        color = colors[index % len(colors)]
+        color = rules_colors[index % len(rules_colors)]
         padding_rule = (TERMINAL_WIDTH - len(rule)) // 2
         centered_rule = f"{'' * padding_rule}{rule}{' ' * padding_rule}"
         print(f"{color}{Style.BRIGHT}{centered_rule}{Fore.RESET}{Back.RESET}")
@@ -318,15 +318,15 @@ def print_password(password_guess):
         None
     """
     terminal_width = shutil.get_terminal_size().columns
-    padding = (terminal_width - len(password_guess)) // 2
+    password_padding = (terminal_width - len(password_guess)) // 2
 
     # Convert revealed numbers to green and question marks to red
     formatted_guess = ""
     for char in password_guess:
         if char.isdigit():
-            formatted_guess += f"{Fore.GREEN}{char}"
+            formatted_guess += f"{Fore.GREEN}{Style.BRIGHT}{char}"
         else:
-            formatted_guess += f"{Fore.WHITE}{char}"
+            formatted_guess += f"{Fore.WHITE}{Style.BRIGHT}{char}"
 
     print()
     print()
@@ -336,8 +336,8 @@ def print_password(password_guess):
     # Print the formatted password
     print(f"{Back.WHITE}{' ' * terminal_width}")
     print(
-        f"{Back.BLACK}{Fore.WHITE}{' ' * padding}"
-        F"{formatted_guess}{' ' * padding}"
+        f"{Back.BLACK}{Fore.WHITE}{' ' * password_padding}"
+        F"{formatted_guess}{' ' * password_padding}"
         f"{Style.RESET_ALL}"
     )
     print(f"{Back.WHITE}{' ' * terminal_width}")
@@ -410,7 +410,7 @@ country_part = (
 TERMINAL_WIDTH = 113
 print(Back.WHITE + Fore.BLACK + '=' * TERMINAL_WIDTH + Style.RESET_ALL)
 print(Back.GREEN + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
-print_colored_text("*||| WELCOME |||*")
+print_colored_text(" W E L C O M E ")
 print()
 print_colored_text(player_name)
 print()
@@ -488,7 +488,7 @@ while True:
         "Your guess: ", f"{Fore.YELLOW}"
         ).strip()
     clear_screen()
-   
+
     # Check if user wants to quit
     if guess.lower() == 'q':
         while True:
@@ -530,13 +530,13 @@ while True:
 
         # Print the centered message
         MESSAGE = "Please enter 6 numbers separated by space or 'q' to quit."
-        padding = (TERMINAL_WIDTH - len(MESSAGE)) // 2
+        MESSAGE_PADDING = (TERMINAL_WIDTH - len(MESSAGE)) // 2
         centered_message = (
-                f"{' ' * padding}"  # Left padding
+                f"{' ' * MESSAGE_PADDING}"  # Left padding
                 f"{Fore.WHITE}"        # Red color
                 f"{MESSAGE}"         # Message content
                 f"{Fore.RESET}"      # Reset color
-                f"{' ' * padding}"   # Right padding
+                f"{' ' * MESSAGE_PADDING}"   # Right padding
             )
         print(centered_message)
 
@@ -558,13 +558,13 @@ while True:
             f"{Fore.YELLOW} {DIFFICULTY_RANGE}{Fore.RESET}."
         )
 
-        padding = (TERMINAL_WIDTH - len(MESSAGE)) // 2
+        MESSAGE_PADDING = (TERMINAL_WIDTH - len(MESSAGE)) // 2
         centered_message = (
-            f"{' ' * padding}"  # Left padding
+            f"{' ' * MESSAGE_PADDING}"  # Left padding
             f"{Fore.RED}"  # Red color
             f"{MESSAGE}"  # Message content
             f"{Fore.RESET}"  # Reset color
-            f"{' ' * padding}"  # Right padding
+            f"{' ' * MESSAGE_PADDING}"  # Right padding
         )
         print(centered_message)
 
@@ -584,8 +584,9 @@ while True:
     for i, digit in enumerate(guess):
         if correctly_guessed_positions[i] and digit != password[i]:
             TERMINAL_WIDTH = 113
-            padding = (
-                TERMINAL_WIDTH - len(f"Please enter {password[i]} for position {i + 1}")) // 2
+            MESSAGE_PADDING = (
+                TERMINAL_WIDTH - len(
+                    f"Please enter {password[i]} for position {i + 1}")) // 2
             centered_message = (
                 f"{Fore.RED}Please enter"
                 f"{Fore.YELLOW} {password[i]}"
@@ -597,10 +598,10 @@ while True:
             # Print empty red line Above the message
             print(Back.RED + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
 
-            print(' ' * padding + centered_message)
+            print(' ' * MESSAGE_PADDING + centered_message)
             # Print empty red line below the message
             print(Back.RED + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
-            
+
             print()
             REVEALED_NUMBERS_IN_CORRECT_POSITION = True
             break
