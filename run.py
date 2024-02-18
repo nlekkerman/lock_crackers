@@ -67,12 +67,15 @@ def print_colored_text(text, background_color=None):
     Returns:
         None
     """
-    colors = [
+    colored_letters = [
         Fore.RED, Fore.GREEN, Fore.YELLOW, Fore.BLUE, Fore.MAGENTA, Fore.CYAN]
     centered_text = text.center(TERMINAL_WIDTH)
     colored_text = ""
     for insx, char in enumerate(centered_text):
-        colored_text += f"{colors[insx % len(colors)]}{Style.BRIGHT}{char}"  
+        colored_text += (
+                         f"{colored_letters[insx % len(colored_letters)]}"
+                         f"{Style.BRIGHT}{char}"
+                        )
     # Apply background color if provided
     if background_color:
         print(f"{background_color}{colored_text}{Style.RESET_ALL}")
@@ -162,7 +165,8 @@ def get_input_password(input_message, color):
         str: The user input.
     """
     password_instructions_message = (
-        "Enter your password guess, 6 numbers separated by space or Q for quit! ")
+        "Enter your guess, 6 numbers separated by space or Q for quit! "
+        )
 
     while True:
         print_input_instructions(password_instructions_message, Fore.WHITE)

@@ -26,12 +26,12 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
    - The game starts with a welcome message prompting the player to enter their name and location.
    - The player is greeted with a colorful display of their name and location.
 
-2. **Choose Difficulty Level:**
-   - The player is prompted to choose a difficulty level: 'C' for Child mode (0-3), 'E' for Easy mode (0-5), or 'H' for Hard mode (0-9).
-
-3. **Game Rules:**
+2. **Game Rules:**
    - The game rules are displayed, explaining how to play the game and the objective of cracking the password.
    - Rules are displayed with alternating colors for better visibility.
+
+3. **Choose Difficulty Level:**
+   - The player is prompted to choose a difficulty level: 'C' for Child mode (0-3), 'E' for Easy mode (0-5), or 'H' for Hard mode (0-9).
 
 4. **Game Initialization:**
    - A random password is generated based on the chosen difficulty level.
