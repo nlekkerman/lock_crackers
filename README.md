@@ -21,6 +21,8 @@
 Lock Crackers is an engaging and entertaining password guessing game designed to test your skills in cracking passwords. It provides an exciting challenge where players attempt to guess a password composed of six numbers within a specific range. With multiple difficulty levels and an intuitive interface, Lock Crackers offers an enjoyable gaming experience for users of all ages.
 
 ## Game Flow
+   **Logic behind the game:**
+   ![Rules](features/logic.jpg)
 
 1. **Welcome Message and Player Information:**
    - The game starts with a welcome message and prompting the player to enter their name and location.
@@ -29,18 +31,18 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
 
    - Before proceeding with the game, certain validations are applied to ensure the correctness of user input. Only letters and spaces are accepted. Any input containing other characters will be rejected, prompting the user to provide valid input.
 
-    ![Welcome Message](features/presonal_data_input.jpg)
+    ![Personal Data input](features/presonal_data_input.jpg)
 
    - The player is greeted with a colorful display of their name and their location.
 
-    ![Welcome Message](features/greetings_player.jpg)
+    ![Greetins Message](features/greetings_player.jpg)
   
 
 2. **Game Rules:**
    - The game rules are displayed, explaining how to play the game and the objective of cracking the password.
    - Rules are displayed with alternating colors for better visibility.
 
-    ![Welcome Message](features/game_rules.jpg)
+    ![Rules](features/game_rules.jpg)
 
 3. **Choose Difficulty Level:**
    - The player is prompted to choose a difficulty level: 'C' for Child mode (0-3), 'E' for Easy mode (0-5), or 'H' for Hard mode (0-9).
@@ -49,26 +51,32 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
    - A random password is generated based on the chosen difficulty level.
    - The password is hidden, and the player needs to guess it.
 
-    ![Welcome Message](features/password_display_input.jpg)
+    ![Password Display and Start of the game](features/password_display_input.jpg)
 
 5. **Main Game Loop:**
-   - The player is prompted to enter their guess for the password.
-   - The guess is validated, and feedback is provided if the input is invalid.
-   - If the player wants to quit, they can enter 'q'.
-   - The player's guess is compared to the hidden password, and feedback is provided based on correctness.
-   - The game continues until the player either cracks the password or decides to quit.
+   - During the main game loop, several steps occur:
+     - The player is prompted to enter their guess for the password.
+     - The guess is validated, ensuring it contains only letters and spaces, and feedback is provided if the input is invalid.
+     - If the player wants to quit, they can enter 'q'.
+     - The player's guess is compared to the hidden password, and feedback is provided based on correctness.
+     - The game continues until the player either cracks the password or decides to quit.
 
-    ![Welcome Message](features/message_pasword_validation.jpg)
+![Hidden Password Validation](features/message_pasword_validation.jpg)
+* Hidden Password - Password Validation*
+The welcome message displayed when the game starts, ensuring the player's name input is valid.
 
+![Input Password Validation](features/input_password_valdiation_message.jpg)
+*Input Password Validation Message*
+A validation message displayed when the player's guess contains invalid characters or format.
 
-    ![Welcome Message](features/input_password_valdiation_message.jpg)
+![Correct Position Validation](features/correct_position_validation.jpg)
+*Correct Position Validation Message*
+Feedback provided when some revealed numbers are in the correct position but not yet revealed.
 
+![Quit Input](features/quit_input.jpg)
+*Quit Input Message*
+Prompt asking the player if they want to quit the game.
 
-    ![Welcome Message](features/correct_position_validation.jpg)
-
-
-    ![Welcome Message](features/quit_input.jpg)
-    
 
 
 6. **Game Outcome:**
@@ -77,9 +85,7 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
    - Player information and game outcome are saved to a Google Sheets leaderboard.
    - The leaderboard is displayed, showing the top 10 players sorted by the best time.
 
-7. **Conclusion:**
-   - The player is informed that they have completed the Lock Cracker game.
-   - The game can be played again by running the main function.
+
 
 ## Features
 
