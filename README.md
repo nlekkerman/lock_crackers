@@ -31,7 +31,7 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
 
     ![Welcome Message](features/presonal_data_input.jpg)
 
-   - The player is greeted with a colorful display of their name and location.
+   - The player is greeted with a colorful display of their name and their location.
 
     ![Welcome Message](features/greetings_player.jpg)
   
@@ -49,12 +49,27 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
    - A random password is generated based on the chosen difficulty level.
    - The password is hidden, and the player needs to guess it.
 
+    ![Welcome Message](features/password_display_input.jpg)
+
 5. **Main Game Loop:**
    - The player is prompted to enter their guess for the password.
    - The guess is validated, and feedback is provided if the input is invalid.
    - If the player wants to quit, they can enter 'q'.
    - The player's guess is compared to the hidden password, and feedback is provided based on correctness.
    - The game continues until the player either cracks the password or decides to quit.
+
+    ![Welcome Message](features/message_pasword_validation.jpg)
+
+
+    ![Welcome Message](features/input_password_valdiation_message.jpg)
+
+
+    ![Welcome Message](features/correct_position_validation.jpg)
+
+
+    ![Welcome Message](features/quit_input.jpg)
+    
+
 
 6. **Game Outcome:**
    - If the player successfully cracks the password, they win the game.
