@@ -60,7 +60,6 @@ def validate_game_mode(mode):
     return True
 
 
-
 def print_colored_text(text, background_color=None):
     """
     Print the text "Congratulations!" with each letter in a different color.
@@ -448,7 +447,7 @@ while True:
         "'E' for easy, or 'H' for hard: ",
         color=Fore.WHITE
         )
-    
+
     user_mode = get_input("Your level:", f"{Fore.YELLOW}").strip().upper()
     clear_screen()
     if validate_game_mode(user_mode):
