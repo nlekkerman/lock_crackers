@@ -421,7 +421,7 @@ print_colored_text(" G R E E T I N G S ")
 print()
 print_colored_text(player_name)
 print()
-print_colored_text("~ OF ~")
+print_colored_text("~~ FROM ~~")
 print()
 print_colored_text(player_country)
 print(Back.GREEN + ' ' * TERMINAL_WIDTH + Style.RESET_ALL)
@@ -729,7 +729,10 @@ for i, row in enumerate(leaderboard_data[:10]):
 
 print()
 print()
-print_colored_text("JUST PLAYED LOCK CRACKER GAME")
+message = f"{player_name}, Y O U  JUST PLAYED LOCK CRACKER GAME"
+
+# Print the colored text
+print_colored_text(message)
 print()
 
 if __name__ == "__main__":

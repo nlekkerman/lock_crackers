@@ -276,7 +276,9 @@ During the development process, I primarily utilized version control commands wi
 [Back to Top](#table-of-contents)
 
 ## Design
-
+- A captivating background image has been chosen for the Game.
+- The image is seamlessly integrated to fit the entire screen, providing a visually appealing backdrop.
+- Title and button perfectly rounding complete visual appearance.
 - The project incorporates a vibrant color scheme to enhance its appearance.
 - Special attention has been given to the terminal interface:
   - Colorful outputs are utilized to provide visual feedback.
