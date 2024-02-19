@@ -26,11 +26,12 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
    - [User Goals](#user-goals)
    - [Owner Goals](#owner-goals)
 7. [How to Play](#how-to-play)
-8. [Instalation](#instalation)
-10. [Deployment](#deployment)
-11. [Running the Game](#running-the-game)
-12. [Example Output](#example-output)
-13. [Credits](#credits)
+8. [Installation](#installation)
+10. [Design](#design)
+11. [Deployment](#deployment)
+12. [Running the Game](#running-the-game)
+13. [Example Output](#example-output)
+14. [Credits](#credits)
 
 
 ## Game Flow
@@ -44,7 +45,7 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
    - The game starts with a welcome message and prompting the player to enter their name and location.
 
     ![Welcome Message](features/welcome_message.jpg)
-    [Back to Top](#table-of-contents)
+   [Back to Top](#table-of-contents)
 
    - Before proceeding with the game, certain validations are applied to ensure the correctness of user input. Only letters and spaces are accepted. Any input containing other characters will be rejected, prompting the user to provide valid input.
 
@@ -146,6 +147,7 @@ Prompt asking the player if they want to quit the game.
 - **Enhanced Graphics**: Implement improved graphics and animations to enhance the overall gaming experience.
 - **Achievements and Rewards**: Introduce achievements and rewards to incentivize gameplay and engagement.
 - **Scores by Difficulty Range**: View scores sorted by difficulty level to see how players performed in each mode.
+
 [Back to Top](#table-of-contents)
 
 
@@ -230,6 +232,7 @@ As the owners of Lock Crackers, our goals are:
 
    ```bash
    git clone https://github.com/nlekkerman/lock_crackers.git
+
 [Back to Top](#table-of-contents)
 
 ## Deployment
@@ -269,7 +272,29 @@ During the development process, I primarily utilized version control commands wi
    6. Set the buildpacks to Python and NodeJS, in that order.
    7. Configure GitHub integration and choose the main branch in the Deploy tab.
    8. Click Deploy branch to initiate the deployment process.
+
 [Back to Top](#table-of-contents)
+
+## Design
+
+- The project incorporates a vibrant color scheme to enhance its appearance.
+- Special attention has been given to the terminal interface:
+  - Colorful outputs are utilized to provide visual feedback.
+  - The use of color enhances user interaction.
+  - This adds an element of dynamism to the user experience.
+  - The project becomes more engaging and user-friendly as a result.
+
+### Color Scheme
+
+- `#000000` (Black)
+- `#FF0000` (Red)
+- `#00FF00` (Green)
+- `#0000FF` (Blue)
+- `#FFFF00` (Yellow)
+- `#FF00FF` (Magenta)
+- `#FFFFFF` (White)
+
+
 
 ## Testing
 
@@ -281,6 +306,7 @@ During the development process, I primarily utilized version control commands wi
 
   - No warnings reported.
   - Corrected excessive blank lines (Flake8 E303).
+
 [Back to Top](#table-of-contents)
 
 
