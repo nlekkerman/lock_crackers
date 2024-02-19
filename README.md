@@ -322,12 +322,6 @@ During the development process, I primarily utilized version control commands wi
   - Ensure data integrity by checking for invalid or unexpected values.
 
 - **Examples**:
-  - Below are screenshots demonstrating the validation process during user input:
-     - The following screenshots illustrate the input validation process for ensuring only valid characters (letters from 'a' to 'z' and spaces) are accepted:
-
-    ![Data Input Validation](features/name_place_validation_messages.jpg)
-
-    [Back to Top](#table-of-contents)
 
    ### Input Validation Screenshots
 
@@ -345,7 +339,7 @@ During the development process, I primarily utilized version control commands wi
 
     [Back to Top](#table-of-contents)
 
-   ### Correct Guess Numbers Position Validation
+ - **Correct Guess Numbers Position Validation**
 
    - This screenshot demonstrates the validation process for correctly guessed numbers placed in their correct positions. Each time a player makes a guess, the game evaluates the input against the actual password.If numbers are correctly guessed but placed in the wrong positions, they are still highlighted but with a different color, indicating that they need to be rearranged.
 
@@ -365,7 +359,7 @@ During the development process, I primarily utilized version control commands wi
   
 #### Code
 
-- **This README.md file was partly with help of the template provided by;**
+- **This README.md file was done helped with parts of the template provided by;**
  - [oks-erm](https://github.com/oks-erm).
 
 - **To OpenAI for speeding up the creation of this Application.**
