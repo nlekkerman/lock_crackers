@@ -12,33 +12,22 @@
 4. [Future Features](#future-features)
 5. [Technologies](#technologies)
    - [Programming Language and Libraries](#programming-language-and-libraries)
-     - [Python](#python)
+     
    - [Data Handling Libraries](#data-handling-libraries)
-     - [gspread](#gspread)
-     - [oauth2client](#oauth2client)
    - [Utility Libraries](#utility-libraries)
-     - [colorama](#colorama)
-     - [os](#os)
-     - [random](#random)
-     - [shutil](#shutil)
-     - [time](#time)
    - [Graphics and Design](#graphics-and-design)
-     - [Windows Paint](#windows-paint)
    - [Development Tools](#development-tools)
-     - [Git](#git)
-     - [Visual Studio Code (VS Code)](#visual-studio-code-vs-code)
    - [Deployment Platform](#deployment-platform)
-     - [Heroku](#heroku)
-6. [Goals](#goals-users-and-owners)
+6. [Goals](#goals)
    - [User Goals](#user-goals)
    - [Owner Goals](#owner-goals)
 7. [How to Play](#how-to-play)
 8. [Instructions](#instructions)
-   - [Dependencies](#dependencies)
-   - [Installation](#installation)
-   - [Running the Game](#running-the-game)
-   - [Example Output](#example-output)
-9. [Credits](#credits)
+9. [Dependencies](#dependencies)
+10. [Installation](#installation)
+ [Running the Game](#running-the-game)
+11. [Example Output](#example-output)
+12. [Credits](#credits)
 
 ## Overview
 
@@ -48,7 +37,9 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
 
 ## Game Flow
    **Logic behind the game:**
+   - Essence of Logic Chart
    ![Game Flow](features/logic.jpg)
+
    [Back to Top](#table-of-contents)
 
 1. **Welcome Message and Player Information:**
