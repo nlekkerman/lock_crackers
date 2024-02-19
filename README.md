@@ -29,7 +29,7 @@
      - [Visual Studio Code (VS Code)](#visual-studio-code-vs-code)
    - [Deployment Platform](#deployment-platform)
      - [Heroku](#heroku)
-6. [Goals, Users, and Owners](#goals-users-and-owners)
+6. [Goals](#goals-users-and-owners)
    - [User Goals](#user-goals)
    - [Owner Goals](#owner-goals)
 7. [How to Play](#how-to-play)
@@ -43,25 +43,29 @@
 ## Overview
 
 Lock Crackers is an engaging and entertaining password guessing game designed to test your skills in cracking passwords. It provides an exciting challenge where players attempt to guess a password composed of six numbers within a specific range. With multiple difficulty levels and an intuitive interface, Lock Crackers offers an enjoyable gaming experience for users of all ages.
-
+[Back to Top](#table-of-contents)
 
 
 ## Game Flow
    **Logic behind the game:**
    ![Game Flow](features/logic.jpg)
+   [Back to Top](#table-of-contents)
 
 1. **Welcome Message and Player Information:**
    - The game starts with a welcome message and prompting the player to enter their name and location.
 
     ![Welcome Message](features/welcome_message.jpg)
+    [Back to Top](#table-of-contents)
 
    - Before proceeding with the game, certain validations are applied to ensure the correctness of user input. Only letters and spaces are accepted. Any input containing other characters will be rejected, prompting the user to provide valid input.
 
     ![Personal Data input](features/presonal_data_input.jpg)
+    [Back to Top](#table-of-contents)
 
    - The player is greeted with a colorful display of their name and their location.
 
     ![Greetins Message](features/greetings_player.jpg)
+    [Back to Top](#table-of-contents)
   
 
 2. **Game Rules:**
@@ -69,6 +73,7 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
    - Rules are displayed with alternating colors for better visibility.
 
     ![Rules](features/game_rules.jpg)
+    [Back to Top](#table-of-contents)
 
 3. **Choose Difficulty Level:**
    - The player is prompted to choose a difficulty level: 'C' for Child mode (0-3), 'E' for Easy mode (0-5), or 'H' for Hard mode (0-9).
@@ -78,6 +83,7 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
    - The password is hidden, and the player needs to guess it.
 
     ![Password Display and Start of the game](features/password_display_input.jpg)
+    [Back to Top](#table-of-contents)
 
 5. **Main Game Loop:**
    - During the main game loop, several steps occur:
@@ -92,24 +98,28 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
 - Hidden Password - Password Validation
 The welcome message displayed when the game starts, ensuring the player's name input is valid.
 ![Hidden Password Validation](features/message_pasword_validation.jpg)
+[Back to Top](#table-of-contents)
 
 
 
 - Input Password Validation Message
 A validation message displayed when the player's guess contains invalid characters or format.
 ![Input Password Validation](features/input_password_valdiation_message.jpg)
+[Back to Top](#table-of-contents)
 
 
 
 - Correct Position Validation Message
 This message indicates that some numbers guessed in previous attempts are correct but not placed in the correct position in the current guess.
 ![Correct Position Validation](features/correct_position_validation.jpg)
+[Back to Top](#table-of-contents)
 
 
 
 - Quit Input Message
 Prompt asking the player if they want to quit the game.
 ![Quit Input](features/quit_input.jpg)
+[Back to Top](#table-of-contents)
 
 
 
@@ -123,6 +133,7 @@ Prompt asking the player if they want to quit the game.
    - It includes the player's name, position, difficulty level status, and time.
 
 ![Game Outcome](features/game_outcome.jpg)
+[Back to Top](#table-of-contents)
 
 
 ## Features
@@ -146,6 +157,7 @@ Prompt asking the player if they want to quit the game.
 - **Enhanced Graphics**: Implement improved graphics and animations to enhance the overall gaming experience.
 - **Achievements and Rewards**: Introduce achievements and rewards to incentivize gameplay and engagement.
 - **Scores by Difficulty Range**: View scores sorted by difficulty level to see how players performed in each mode.
+[Back to Top](#table-of-contents)
 
 
 ## Technologies
@@ -181,6 +193,7 @@ Lock Crackers is built using the following technologies:
 ### Deployment Platform
 
 - **Heroku**: Cloud platform used for deploying and hosting the Lock Crackers application.
+[Back to Top](#table-of-contents)
 
 ## Goals
 
@@ -201,6 +214,7 @@ As the owners of Lock Crackers, our goals are:
 2. **User Satisfaction**: Strive for high user satisfaction by addressing user feedback and implementing requested features.
 3. **Community Growth**: Grow the Lock Crackers community by attracting new users and fostering a welcoming environment.
 4. **Long-term Sustainability**: Maintain the game's longevity through strategic planning and ongoing support.
+[Back to Top](#table-of-contents)
 
 
 ## How to Play
@@ -215,6 +229,7 @@ As the owners of Lock Crackers, our goals are:
    - Correct numbers at the correct positions will be revealed.
    - Use revealed parts of the password for subsequent guesses.
    - Keep guessing until you reveal the entire password.
+   [Back to Top](#table-of-contents)
 
 ## Instructions
 
@@ -228,15 +243,15 @@ Ensure you have Python installed on your system.
 
    ```bash
    git clone https://github.com/nlekkerman/lock_crackers.git
+[Back to Top](#table-of-contents)
 
+## Deployment
 
-### Deployment
-
-#### GitHub:
+### GitHub:
 1. **Template Usage:** Started the project by navigating to the CI template and clicking on 'Use this template'. Provided the name Lock Crackers for the this/new repository.
 2. **Development Environment:** After creating the repository, proceed to Visual Studio where the entire project development takes place.
 
-#### Version Control:
+### Version Control:
 
 During the development process, I primarily utilized version control commands within Visual Studio Code. However, users can also use the terminal to execute these commands.
 
@@ -256,7 +271,7 @@ During the development process, I primarily utilized version control commands wi
    - `git revert <first 6 digits of the commit ref>`: Undo changes by creating a new commit to cancel changes to the state of the specified commit.
 
 
-#### Heroku:
+### Heroku:
 - **Hosting Platform:** Heroku was utilized to host the Lock Crackers app. Heroku provides a container-based cloud platform for building, deploying, and managing applications.
 - **Deployment Steps:**
    1. Fork or clone this repository.
@@ -267,6 +282,7 @@ During the development process, I primarily utilized version control commands wi
    6. Set the buildpacks to Python and NodeJS, in that order.
    7. Configure GitHub integration and choose the main branch in the Deploy tab.
    8. Click Deploy branch to initiate the deployment process.
+[Back to Top](#table-of-contents)
 
 ## Testing
 
@@ -278,7 +294,7 @@ During the development process, I primarily utilized version control commands wi
 
   - No warnings reported.
   - Corrected excessive blank lines (Flake8 E303).
-
+[Back to Top](#table-of-contents)
 
 
 ## Credits
@@ -304,5 +320,5 @@ We would like to express our gratitude to the following individuals and resource
 
 - **Mr. Brian O'Hare**: Mentor
 - **OpenAI**: For providing assistance and support
-
+[Back to Top](#table-of-contents)
 
