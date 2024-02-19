@@ -127,7 +127,7 @@ def print_title():
     """
     init(autoreset=True)
     terminal_width = shutil.get_terminal_size().columns
-    welcome_text = "???Lock Crackers???"
+    welcome_text = "???Lock Cracker???"
     centered_welcome_text = welcome_text.center(terminal_width)
     line = " " * terminal_width
     print(f"{Back.BLUE}{line}")
@@ -374,12 +374,7 @@ print_welcome_message()
 
 
 # Delay for 2 seconds
-time.sleep(4)
-# Clear the screen
-os.system('cls' if os.name == 'nt' else 'clear')
-
-
-print_title()
+time.sleep(2)
 
 
 print()
