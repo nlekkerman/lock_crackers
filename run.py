@@ -729,7 +729,8 @@ for i, row in enumerate(leaderboard_data[:10]):
 
 print()
 print()
-message = f"{player_name}, Y O U  JUST PLAYED LOCK CRACKER GAME"
+
+message = f"{player_name}, Y O U  JUST HAVE {GAME_OUTCOME} LOCK CRACKER GAME"
 
 # Print the colored text
 print_colored_text(message)
