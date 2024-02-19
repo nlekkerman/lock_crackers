@@ -231,12 +231,13 @@ During the development process, I primarily utilized version control commands wi
 
 ## Credits
 
+- Image by [Kjpargeter](https://www.freepik.com/author/kjpargeter) on Freepik
 ![Background Image](https://img.freepik.com/free-photo/grunge-style-bank-vault_1048-13937.jpg?w=1380&t=st=1708202840~exp=1708203440~hmac=cb9b2e072aa60d2ac6e61536c9fb6bcbb631bb32fa1821a3f605c375dd2221d7)
 
-
+  
 #### Code
 
-- **This README.md file was created with the assistance of the template provided by;**
+- **This README.md file was partly with help of the template provided by;**
  - [oks-erm](https://github.com/oks-erm).
 
 - **To OpenAI for speeding up the creation of this Application.**
