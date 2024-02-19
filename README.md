@@ -7,18 +7,19 @@
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Features](#features)
-3. [Technologies](#technologies)
+2. [Game Flow](#game-flow)
+3. [Features](#features)
 4. [Future Features](#future-features)
-5. [Goals](#goals)
-6. [Users](#users)
-7. [How to Play](#how-to-play)
-8. [Instructions](#instructions)
+5. [Technologies](#technologies)
+6. [Goals](#goals)
+7. [Users](#users)
+8. [How to Play](#how-to-play)
+9. [Instructions](#instructions)
    - [Dependencies](#dependencies)
    - [Installation](#installation)
    - [Running the Game](#running-the-game)
    - [Example Output](#example-output)
-9. [Credits](#credits)
+10. [Credits](#credits)
 
 ## Overview
 
@@ -82,7 +83,7 @@ A validation message displayed when the player's guess contains invalid characte
 
 
 - Correct Position Validation Message
-Feedback provided when some revealed numbers are in the correct position but not yet revealed.
+This message indicates that some numbers guessed in previous attempts are correct but not placed in the correct position in the current guess.
 ![Correct Position Validation](features/correct_position_validation.jpg)
 
 
@@ -95,10 +96,12 @@ Prompt asking the player if they want to quit the game.
 
 
 6. **Game Outcome:**
+   - The game outcome is presented in vibrant colors to enhance visual pleasure.
    - If the player successfully cracks the password, they win the game.
    - If the player decides to quit, the game ends with the option to view the password and the elapsed time.
    - Player information and game outcome are saved to a Google Sheets leaderboard.
    - The leaderboard is displayed, showing the top 10 players sorted by the best time.
+   - It includes the player's name, position, difficulty level status, and time.
 
 ![Game Outcome](features/game_outcome.jpg)
 
@@ -183,3 +186,24 @@ Ensure you have Python installed on your system.
 
    ```bash
    git clone https://github.com/nlekkerman/lock_crackers.git
+
+
+   ## Credits
+
+
+## Credits
+
+![Background Image](https://img.freepik.com/free-photo/grunge-style-bank-vault_1048-13937.jpg?w=1380&t=st=1708202840~exp=1708203440~hmac=cb9b2e072aa60d2ac6e61536c9fb6bcbb631bb32fa1821a3f605c375dd2221d7)
+
+### Project Creator
+
+The Lock Crackers - Password Guessing Game was created solely by Nikola Simic for the PP3 project for the Code Institute course.
+
+### Special Thanks
+
+We would like to express our gratitude to the following individuals and resources for their support:
+
+- **Mr. Brian O'Hare**: Mentor
+- **OpenAI**: For providing assistance and support
+
+
