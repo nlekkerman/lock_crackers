@@ -188,18 +188,64 @@ Ensure you have Python installed on your system.
    git clone https://github.com/nlekkerman/lock_crackers.git
 
 
-   ## Credits
+### Deployment
+
+#### GitHub:
+1. **Template Usage:** Started the project by navigating to the CI template and clicking on 'Use this template'. Provided the name Lock Crackers for the this/new repository.
+2. **Development Environment:** After creating the repository, proceed to Visual Studio where the entire project development takes place.
+
+#### Version Control:
+
+During the development process, I primarily utilized version control commands within Visual Studio Code. However, users can also use the terminal to execute these commands.
+
+- **Git Commands:**
+   - `git add .`: Add new, deleted, and modified files to the Git staging area.
+   - `git add <file>`: Add a specified file to the Git staging area.
+   - `git reset`: Unstage all files (remove from Git staging area).
+   - `git reset -- <file>`: Unstage a specified file.
+   - `git commit -m "commit message"`: Commit changes to the local repository with a descriptive message.
+   - `git push`: Push all committed changes to the GitHub repository.
+   - `git pull`: Pull changes from the remote branch and integrate them with the current local branch.
+   - `git status`: Display the state of the working directory and the staging area.
+   - `git branch`: Display all branches in the repository.
+   - `git checkout -b <branch>`: Create a new branch.
+   - `git checkout <branch>`: Switch to the specified branch.
+   - `git log`: Display commits.
+   - `git revert <first 6 digits of the commit ref>`: Undo changes by creating a new commit to cancel changes to the state of the specified commit.
+
+
+#### Heroku:
+- **Hosting Platform:** Heroku was utilized to host the Lock Crackers app. Heroku provides a container-based cloud platform for building, deploying, and managing applications.
+- **Deployment Steps:**
+   1. Fork or clone this repository.
+   2. Log into your account on Heroku.
+   3. Create a new Heroku app.
+   4. Navigate to the Settings tab.
+   5. Set up environmental variables in the config vars section (e.g., CREDS for Google service account credentials and PORT set to 8000).
+   6. Set the buildpacks to Python and NodeJS, in that order.
+   7. Configure GitHub integration and choose the main branch in the Deploy tab.
+   8. Click Deploy branch to initiate the deployment process.
+
+
 
 
 ## Credits
 
 ![Background Image](https://img.freepik.com/free-photo/grunge-style-bank-vault_1048-13937.jpg?w=1380&t=st=1708202840~exp=1708203440~hmac=cb9b2e072aa60d2ac6e61536c9fb6bcbb631bb32fa1821a3f605c375dd2221d7)
 
-### Project Creator
 
-The Lock Crackers - Password Guessing Game was created solely by Nikola Simic for the PP3 project for the Code Institute course.
+#### Code
 
-### Special Thanks
+- **This README.md file was created with the assistance of the template provided by;**
+ - [oks-erm](https://github.com/oks-erm).
+
+- **To OpenAI for speeding up the creation of this Application.**
+ - Reduces development time and speeds up the creation of this application by minimizing time spent on research and typing tasks.
+
+ - For providing assistance and support
+
+
+#### Special Thanks
 
 We would like to express our gratitude to the following individuals and resources for their support:
 
