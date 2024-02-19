@@ -1,5 +1,9 @@
 # Lock Crackers - Password Guessing Game
 
+## Overview
+
+Lock Crackers is an engaging and entertaining password guessing game designed to test your skills in cracking passwords. It provides an exciting challenge where players attempt to guess a password composed of six numbers within a specific range. With multiple difficulty levels and an intuitive interface, Lock Crackers offers an enjoyable gaming experience for users of all ages.
+
 
 ![Responisve Image](features/responsive_image.jpg)
 
@@ -25,14 +29,9 @@
 8. [Instructions](#instructions)
 9. [Dependencies](#dependencies)
 10. [Installation](#installation)
- [Running the Game](#running-the-game)
-11. [Example Output](#example-output)
-12. [Credits](#credits)
-
-## Overview
-
-Lock Crackers is an engaging and entertaining password guessing game designed to test your skills in cracking passwords. It provides an exciting challenge where players attempt to guess a password composed of six numbers within a specific range. With multiple difficulty levels and an intuitive interface, Lock Crackers offers an enjoyable gaming experience for users of all ages.
-[Back to Top](#table-of-contents)
+11. [Running the Game](#running-the-game)
+12. [Example Output](#example-output)
+13. [Credits](#credits)
 
 
 ## Game Flow
@@ -40,7 +39,7 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
    - Essence of Logic Chart
    ![Game Flow](features/logic.jpg)
 
-   [Back to Top](#table-of-contents)
+[Back to Top](#table-of-contents)
 
 1. **Welcome Message and Player Information:**
    - The game starts with a welcome message and prompting the player to enter their name and location.
@@ -56,7 +55,7 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
    - The player is greeted with a colorful display of their name and their location.
 
     ![Greetins Message](features/greetings_player.jpg)
-    [Back to Top](#table-of-contents)
+   [Back to Top](#table-of-contents)
   
 
 2. **Game Rules:**
@@ -64,7 +63,7 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
    - Rules are displayed with alternating colors for better visibility.
 
     ![Rules](features/game_rules.jpg)
-    [Back to Top](#table-of-contents)
+[Back to Top](#table-of-contents)
 
 3. **Choose Difficulty Level:**
    - The player is prompted to choose a difficulty level: 'C' for Child mode (0-3), 'E' for Easy mode (0-5), or 'H' for Hard mode (0-9).
@@ -184,6 +183,7 @@ Lock Crackers is built using the following technologies:
 ### Deployment Platform
 
 - **Heroku**: Cloud platform used for deploying and hosting the Lock Crackers application.
+
 [Back to Top](#table-of-contents)
 
 ## Goals
@@ -220,7 +220,7 @@ As the owners of Lock Crackers, our goals are:
    - Correct numbers at the correct positions will be revealed.
    - Use revealed parts of the password for subsequent guesses.
    - Keep guessing until you reveal the entire password.
-   [Back to Top](#table-of-contents)
+[Back to Top](#table-of-contents)
 
 ## Instructions
 
