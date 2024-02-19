@@ -353,7 +353,8 @@ During the development process, I primarily utilized version control commands wi
 
 
 ## Credits
-- **The visual appeal of this Applicationwas enhanced by incorporating a captivating background image, adding depth and vibrancy to the overall presentation.**
+- **The visual appeal of this Application was enhanced by incorporating a captivating background image, adding depth and vibrancy to the overall presentation.**
+
 - Image by [Kjpargeter](https://www.freepik.com/author/kjpargeter) on Freepik
 ![Background Image](https://img.freepik.com/free-photo/grunge-style-bank-vault_1048-13937.jpg?w=1380&t=st=1708202840~exp=1708203440~hmac=cb9b2e072aa60d2ac6e61536c9fb6bcbb631bb32fa1821a3f605c375dd2221d7)
 
