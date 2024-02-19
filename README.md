@@ -341,7 +341,8 @@ During the development process, I primarily utilized version control commands wi
 
  - **Correct Guess Numbers Position Validation**
 
-   - This screenshot demonstrates the validation process for correctly guessed numbers placed in their correct positions. Each time a player makes a guess, the game evaluates the input against the actual password.If numbers are correctly guessed but placed in the wrong positions, they are still highlighted but with a different color, indicating that they need to be rearranged.
+   - This screenshot demonstrates the validation process for correctly guessed numbers placed in their correct positions. Each time a player makes a guess, the game evaluates the input against the actual password.If numbers are correctly guessed but placed in the wrong positions, they are still highlighted but with a different color, indicating that they need to be rearranged. It is placed above title.
+   
 
 
     ![Correct Guess Numbers Position Validation](features/correct_position_validation_terminal.jpg)
