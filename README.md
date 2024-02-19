@@ -26,9 +26,8 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
    - [User Goals](#user-goals)
    - [Owner Goals](#owner-goals)
 7. [How to Play](#how-to-play)
-8. [Instructions](#instructions)
-9. [Dependencies](#dependencies)
-10. [Installation](#installation)
+8. [Instalation](#instalation)
+10. [Deployment](#deployment)
 11. [Running the Game](#running-the-game)
 12. [Example Output](#example-output)
 13. [Credits](#credits)
@@ -205,6 +204,7 @@ As the owners of Lock Crackers, our goals are:
 2. **User Satisfaction**: Strive for high user satisfaction by addressing user feedback and implementing requested features.
 3. **Community Growth**: Grow the Lock Crackers community by attracting new users and fostering a welcoming environment.
 4. **Long-term Sustainability**: Maintain the game's longevity through strategic planning and ongoing support.
+
 [Back to Top](#table-of-contents)
 
 
@@ -220,15 +220,11 @@ As the owners of Lock Crackers, our goals are:
    - Correct numbers at the correct positions will be revealed.
    - Use revealed parts of the password for subsequent guesses.
    - Keep guessing until you reveal the entire password.
+
 [Back to Top](#table-of-contents)
 
-## Instructions
 
-### Dependencies
-
-Ensure you have Python installed on your system.
-
-### Installation
+## Installation
 
 1. Clone the Repository:
 
@@ -311,5 +307,6 @@ We would like to express our gratitude to the following individuals and resource
 
 - **Mr. Brian O'Hare**: Mentor
 - **OpenAI**: For providing assistance and support
+
 [Back to Top](#table-of-contents)
 
