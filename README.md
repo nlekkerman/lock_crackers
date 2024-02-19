@@ -31,6 +31,7 @@ Lock Crackers is an engaging and entertaining password guessing game designed to
 11. [Deployment](#deployment)
 12. [Running the Game](#running-the-game)
 13. [Example Output](#example-output)
+13. [Testing](#testing)
 14. [Credits](#credits)
 
 
@@ -310,6 +311,50 @@ During the development process, I primarily utilized version control commands wi
   - Corrected excessive blank lines (Flake8 E303).
 
 [Back to Top](#table-of-contents)
+
+#### Input Validation Process
+
+- **Description**: Before processing user inputs in the terminal, the application performs validation to ensure that all values are entered correctly and adhere to the expected format.
+
+- **Validation Steps**:
+  - Check for the presence of required fields.
+  - Validate the format of input data (e.g., numeric values, string patterns).
+  - Ensure data integrity by checking for invalid or unexpected values.
+
+- **Examples**:
+  - Below are screenshots demonstrating the validation process during user input:
+     - The following screenshots illustrate the input validation process for ensuring only valid characters (letters from 'a' to 'z' and spaces) are accepted:
+
+    ![Data Input Validation](features/name_place_validation_messages.jpg)
+
+    [Back to Top](#table-of-contents)
+
+   ### Input Validation Screenshots
+
+    Below are screenshots demonstrating the validation process during user input:
+
+- **Data Input Validation**:
+   - The following screenshots illustrate the input validation process for ensuring only valid characters, specifically letters from 'a' to 'z' and spaces, are accepted for player name and location inputs:
+
+    ![Data Input Validation](features/name_place_validation_messages.jpg)
+
+- **Password Input Validation**:
+   - In this validation process, only numbers and spaces are accepted as valid input for the password. Any deviation from this format, such as alphanumeric characters or special symbols, will result in rejection:
+
+    ![Password Input Validation](features/general_mesage_terminal.jpg)
+
+    [Back to Top](#table-of-contents)
+
+   ### Correct Guess Numbers Position Validation
+
+   - This screenshot demonstrates the validation process for correctly guessed numbers placed in their correct positions. Each time a player makes a guess, the game evaluates the input against the actual password.If numbers are correctly guessed but placed in the wrong positions, they are still highlighted but with a different color, indicating that they need to be rearranged.
+
+
+    ![Correct Guess Numbers Position Validation](features/correct_position_validation_terminal.jpg)
+
+    [Back to Top](#table-of-contents)
+
+
 
 
 ## Credits
